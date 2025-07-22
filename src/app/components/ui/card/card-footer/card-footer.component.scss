@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.pb-6 { padding-bottom: 1.5rem; }
+
+// Conditional border and padding
+.border-t-conditional {
+  &:has(.border-t) {
+    padding-top: 1.5rem;
+  }
+}
+
+.pt-6-conditional {
+  &:has(.border-t) {
+    padding-top: 1.5rem;
+  }
+}

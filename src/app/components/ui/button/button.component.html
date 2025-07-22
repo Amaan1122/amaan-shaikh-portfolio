@@ -1,0 +1,53 @@
+<ng-container [ngSwitch]="elementType">
+  <!-- Button element (default) -->
+  <button
+    *ngSwitchCase="'button'"
+    [type]="type"
+    [disabled]="disabled"
+    [attr.data-slot]="'button'"
+    [class]="getButtonClasses()"
+    (click)="onClick($event)"
+  >
+    <ng-content></ng-content>
+  </button>
+
+  <!-- Anchor element (when asChild is true and href is provided) -->
+  <a
+    *ngSwitchCase="'a'"
+    [href]="href"
+    [target]="target"
+    [attr.data-slot]="'button'"
+    [class]="getButtonClasses()"
+    [attr.aria-disabled]="disabled"
+    (click)="onClick($event)"
+  >
+    <ng-content></ng-content>
+  </a>
+
+  <!-- Div element (when asChild is true but no href) -->
+  <div
+    *ngSwitchCase="'div'"
+    [attr.data-slot]="'button'"
+    [class]="getButtonClasses()"
+    [attr.aria-disabled]="disabled"
+    [attr.role]="'button'"
+    [attr.tabindex]="disabled ? -1 : 0"
+    (click)="onClick($event)"
+    (keydown.enter)="onClick($event)"
+    (keydown.space)="onClick($event)"
+  >
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Default fallback -->
+  <button
+    *ngSwitchDefault
+    [type]="type"
+    [disabled]="disabled"
+    [attr.data-slot]="'button'"
+    [class]="getButtonClasses()"
+    (click)="onClick($event)"
+  >
+    <ng-content></ng-content>
+  </button>
+</ng-container>

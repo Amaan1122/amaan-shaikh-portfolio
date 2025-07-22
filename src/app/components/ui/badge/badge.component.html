@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="element">
+  <!-- Span element (default) -->
+  <span
+    *ngSwitchCase="'span'"
+    [attr.data-slot]="'badge'"
+    [class]="getBadgeClasses()"
+  >
+    <ng-content></ng-content>
+  </span>
+
+  <!-- Div element -->
+  <div
+    *ngSwitchCase="'div'"
+    [attr.data-slot]="'badge'"
+    [class]="getBadgeClasses()"
+  >
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Anchor element -->
+  <a
+    *ngSwitchCase="'a'"
+    [attr.data-slot]="'badge'"
+    [class]="getBadgeClasses() + ' a-hover-styles'"
+  >
+    <ng-content></ng-content>
+  </a>
+
+  <!-- Default fallback -->
+  <span *ngSwitchDefault [attr.data-slot]="'badge'" [class]="getBadgeClasses()">
+    <ng-content></ng-content>
+  </span>
+</ng-container>

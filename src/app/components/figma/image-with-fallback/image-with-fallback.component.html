@@ -1,0 +1,38 @@
+<!-- Error state -->
+<div *ngIf="didError()" [class]="getErrorContainerClasses()" [ngStyle]="style">
+  <div class="flex items-center justify-center w-full h-full">
+    <img
+      [src]="ERROR_IMG_SRC"
+      alt="Error loading image"
+      [attr.data-original-url]="src"
+      [loading]="loading"
+      [decoding]="decoding"
+      [attr.crossorigin]="crossorigin || null"
+      [attr.referrerpolicy]="referrerpolicy || null"
+      [sizes]="sizes || null"
+      [srcset]="srcset || null"
+      [attr.usemap]="usemap || null"
+      [width]="width || null"
+      [height]="height || null"
+    />
+  </div>
+</div>
+
+<!-- Normal image -->
+<img
+  *ngIf="!didError()"
+  [src]="src"
+  [alt]="alt"
+  [class]="className"
+  [ngStyle]="style"
+  [loading]="loading"
+  [decoding]="decoding"
+  [attr.crossorigin]="crossorigin || null"
+  [attr.referrerpolicy]="referrerpolicy || null"
+  [sizes]="sizes || null"
+  [srcset]="srcset || null"
+  [attr.usemap]="usemap || null"
+  [width]="width || null"
+  [height]="height || null"
+  (error)="handleError()"
+/>

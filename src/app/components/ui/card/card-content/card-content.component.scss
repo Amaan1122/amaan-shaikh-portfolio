@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+// Last child padding
+.last-child-pb-6 {
+  &:last-child {
+    padding-bottom: 1.5rem;
+  }
+}

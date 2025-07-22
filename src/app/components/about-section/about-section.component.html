@@ -1,0 +1,161 @@
+<section id="about" class="py-32 relative" #sectionRef>
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-1/4 right-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+    <div [@containerAnimation]="getAnimationState()" class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <div [@itemAnimation] class="text-center mb-20">
+        <div class="inline-block mb-4 brain-icon-hover">
+          <lucide-icon
+            [img]="Brain"
+            class="w-8 h-8 text-primary mx-auto mb-4"
+          ></lucide-icon>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black mb-6">
+          About <span class="gradient-text">Me</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-primary to-cyan-500 mx-auto rounded-full"
+        ></div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div [@itemAnimation] class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div
+          *ngFor="let stat of stats; trackBy: trackByStatLabel"
+          class="text-center stat-card"
+        >
+          <app-card
+            className="glass-effect p-6 border-0 hover:neon-border transition-all duration-300"
+          >
+            <lucide-icon
+              [img]="stat.icon"
+              [class]="'w-8 h-8 mx-auto mb-3 ' + stat.color"
+            ></lucide-icon>
+            <div class="text-3xl font-black gradient-text mb-2">
+              {{ stat.value }}
+            </div>
+            <div class="text-sm text-foreground/70">{{ stat.label }}</div>
+          </app-card>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Text Content -->
+        <div [@itemAnimation] class="space-y-8">
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-bold">
+              Crafting Digital Excellence with
+              <span class="gradient-text">Cutting-Edge Technology</span>
+            </h3>
+
+            <div class="space-y-4 text-lg text-foreground/80 leading-relaxed">
+              <p>
+                I'm a passionate Full Stack Developer with
+                <span class="text-primary font-semibold">3+ years</span> of
+                expertise in building robust, scalable web applications. My
+                journey in technology is driven by an insatiable curiosity for
+                innovation and a commitment to delivering exceptional digital
+                experiences.
+              </p>
+
+              <p>
+                Specializing in the powerful combination of
+                <span class="text-red-400 font-semibold">Angular</span> and
+                <span class="text-blue-400 font-semibold">.NET Core</span>, I've
+                successfully delivered solutions for clients across the United
+                States, consistently exceeding expectations and driving business
+                growth.
+              </p>
+
+              <p>
+                What sets me apart is my integration of
+                <span class="text-purple-400 font-semibold"
+                  >AI technologies</span
+                >
+                into traditional web development, creating intelligent solutions
+                that push the boundaries of what's possible in modern software
+                development.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <div
+              *ngFor="let skill of skills; trackBy: trackBySkill"
+              class="skill-badge"
+            >
+              <app-badge
+                variant="secondary"
+                className="px-4 py-2 glass-effect text-primary border border-primary/20 hover:bg-primary/10 transition-all duration-300"
+              >
+              {{ skill }}
+                <lucide-icon [img]="Zap" class="w-4 h-4 mr-2"></lucide-icon>
+              </app-badge>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies Grid -->
+        <div [@itemAnimation] class="space-y-6">
+          <h4 class="text-xl font-semibold text-center mb-8">
+            Core Technologies
+          </h4>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              *ngFor="
+                let tech of technologies;
+                trackBy: trackByTechName;
+                let i = index
+              "
+              class="relative tech-card"
+              (mouseenter)="onTechHover(tech.name)"
+              (mouseleave)="onTechLeave()"
+            >
+              <app-card
+                className="glass-effect p-4 border-0 hover:neon-border transition-all duration-300 relative overflow-hidden"
+              >
+                <!-- Progress Background -->
+                <div
+                  [class]="
+                    'absolute inset-0 bg-gradient-to-r opacity-10 ' + tech.color
+                  "
+                  [ngStyle]="getTechProgressStyles(tech)"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-semibold text-foreground">{{
+                      tech.name
+                    }}</span>
+                    <span class="text-sm text-foreground/60"
+                      >{{ tech.level }}%</span
+                    >
+                  </div>
+
+                  <div class="w-full bg-muted/30 rounded-full h-2">
+                    <div
+                      [class]="
+                        'h-2 rounded-full bg-gradient-to-r ' + tech.color
+                      "
+                      [ngStyle]="getTechBarStyles(tech, i)"
+                    ></div>
+                  </div>
+                </div>
+              </app-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

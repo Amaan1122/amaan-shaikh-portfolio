@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+// Container query support
+.container-card-header {
+  container-type: inline-size;
+  container-name: card-header;
+}
+
+// Grid layout
+.grid { display: grid; }
+.auto-rows-min { grid-auto-rows: min-content; }
+.grid-rows-auto-auto { grid-template-rows: auto auto; }
+.items-start { align-items: start; }
+.gap-1\.5 { gap: 0.375rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.pt-6 { padding-top: 1.5rem; }
+
+// Conditional grid columns when card-action is present
+.has-card-action {
+  grid-template-columns: 1fr auto;
+}
+
+// Conditional border and padding
+.border-b-conditional {
+  &:has(.border-b) {
+    padding-bottom: 1.5rem;
+  }
+}
+
+.pb-6-conditional {
+  &:has(.border-b) {
+    padding-bottom: 1.5rem;
+  }
+}

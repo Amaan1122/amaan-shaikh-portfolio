@@ -1,0 +1,62 @@
+<!-- Main Navigation -->
+<nav [@slideDown] [class]="getNavClasses()">
+  <div class="container mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div [@fadeInSlide] class="text-2xl font-bold gradient-text">AS</div>
+
+      <!-- Desktop Navigation -->
+      <div
+        class="hidden md:flex items-center space-x-8"
+        [@staggerIn]="navItems.length"
+      >
+        <button
+          *ngFor="let item of navItems; trackBy: trackByLabel"
+          (click)="scrollToSection(item.href)"
+          class="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+        >
+          {{ item.label }}
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <app-button
+        variant="ghost"
+        size="icon"
+        className="md:hidden"
+        (buttonClick)="toggleMobileMenu()"
+      >
+        <lucide-icon [img]="isMobileMenuOpen() ? X : Menu" class="w-6 h-6 my-icon">
+        </lucide-icon>
+      </app-button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    [@mobileMenuSlide]="isMobileMenuOpen() ? 'open' : 'closed'"
+    class="md:hidden glass-effect border-t border-white/10"
+  >
+    <div class="container mx-auto px-6 py-4">
+      <button
+        *ngFor="let item of navItems"
+        (click)="scrollToSection(item.href)"
+        class="flex items-center gap-3 w-full text-left py-3 text-foreground/80 hover:text-primary transition-colors"
+      >
+        <lucide-icon [img]="item.icon" class="w-5 h-5 my-icon"></lucide-icon>
+        {{ item.label }}
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Floating Action Button -->
+<div [@floatingButton] class="fixed right-6 bottom-6 z-40 flex flex-col gap-3">
+  <app-button
+    size="icon"
+    className="rounded-full w-12 h-12 animate-glow"
+    (buttonClick)="scrollToSection('#home')"
+    >
+    <lucide-icon [img]="Home" class="w-5 h-5 lucide-icon my-icon"></lucide-icon>
+</app-button>
+</div>
