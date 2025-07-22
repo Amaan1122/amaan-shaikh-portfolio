@@ -1,3 +1,6 @@
+@use "../../../../styles/styles.scss";
+@use "../../../../styles/utilities.scss";
+
 :host {
   display: inline-block;
 
@@ -55,17 +58,17 @@ div[data-slot="button"] {
   // Focus visible styles
   &:focus-visible {
     outline: none;
-    border-color: var(--ring);
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.5);
+    border-color: rgba(styles.$ring, 1);
+    box-shadow: 0 0 0 3px rgba(styles.$ring, 0.5);
   }
 
   // Invalid state styles
   &[aria-invalid="true"] {
-    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.2);
-    border-color: hsl(var(--destructive));
+    box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.2);
+    border-color: rgba(styles.$destructive, 1);
 
     @media (prefers-color-scheme: dark) {
-      box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.4);
+      box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.4);
     }
   }
 
@@ -148,19 +151,19 @@ div[data-slot="button"] {
 
 // Hover effects for different variants
 .bg-primary:hover {
-  background-color: hsl(var(--primary) / 0.9);
+  background-color: rgba(styles.$primary, 0.9);
 }
 .bg-destructive:hover {
-  background-color: hsl(var(--destructive) / 0.9);
+  background-color: rgba(styles.$destructive, 0.9);
 }
 .bg-secondary:hover {
-  background-color: hsl(var(--secondary) / 0.8);
+  background-color: rgba(styles.$secondary, 0.8);
 }
 .hover\:bg-accent:hover {
-  background-color: hsl(var(--accent));
+  background-color: rgba(styles.$accent, 1);
 }
 .hover\:text-accent-foreground:hover {
-  color: hsl(var(--accent-foreground));
+  color: rgba(styles.$accent-foreground, 1);
 }
 .hover\:underline:hover {
   text-decoration: underline;
@@ -169,18 +172,18 @@ div[data-slot="button"] {
 // Dark mode hover effects
 @media (prefers-color-scheme: dark) {
   .dark\:bg-destructive\/60 {
-    background-color: hsl(var(--destructive) / 0.6);
+    background-color: rgba(styles.$destructive, 0.6);
   }
   .dark\:bg-input\/30 {
-    background-color: hsl(var(--input) / 0.3);
+    background-color: rgba(styles.$input, 0.3);
   }
   .dark\:border-input {
-    border-color: hsl(var(--input));
+    border-color: rgba(styles.$input, 1);
   }
   .dark\:hover\:bg-input\/50:hover {
-    background-color: hsl(var(--input) / 0.5);
+    background-color: rgba(styles.$input, 0.5);
   }
   .dark\:hover\:bg-accent\/50:hover {
-    background-color: hsl(var(--accent) / 0.5);
+    background-color: rgba(styles.$accent, 0.5);
   }
 }

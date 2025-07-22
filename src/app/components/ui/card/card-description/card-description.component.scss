@@ -1,8 +1,11 @@
+@use "../../../../../styles/styles.scss";
+@use "../../../../../styles/utilities.scss";
+
 :host {
   display: block;
 }
 
-.text-muted-foreground { color: hsl(var(--muted-foreground)); }
+.text-muted-foreground { color: rgba(styles.$muted-foreground, 1); }
 
 p {
   margin: 0;

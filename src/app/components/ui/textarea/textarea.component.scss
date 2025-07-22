@@ -1,3 +1,6 @@
+@use "../../../../styles/styles.scss";
+@use "../../../../styles/utilities.scss";
+
 :host {
   display: block;
   width: 100%;
@@ -7,32 +10,32 @@
 textarea[data-slot="textarea"] {
   // Placeholder styles
   &::placeholder {
-    color: hsl(var(--muted-foreground));
+    color: rgba(styles.$muted-foreground, 1);
   }
 
   // Focus styles
   &:focus-visible {
     outline: none;
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.5);
+    border-color: rgba(styles.$ring, 1);
+    box-shadow: 0 0 0 3px rgba(styles.$ring, 0.5);
   }
 
   // Invalid state styles
   &[aria-invalid="true"] {
-    border-color: hsl(var(--destructive));
-    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.2);
+    border-color: rgba(styles.$destructive, 1);
+    box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.2);
 
     @media (prefers-color-scheme: dark) {
-      box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.4);
+      box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.4);
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 3px hsl(var(--ring) / 0.5),
-        0 0 0 2px hsl(var(--destructive) / 0.2);
+      box-shadow: 0 0 0 3px rgba(styles.$ring, 0.5),
+        0 0 0 2px rgba(styles.$destructive, 0.2);
 
       @media (prefers-color-scheme: dark) {
-        box-shadow: 0 0 0 3px hsl(var(--ring) / 0.5),
-          0 0 0 2px hsl(var(--destructive) / 0.4);
+        box-shadow: 0 0 0 3px rgba(styles.$ring, 0.5),
+          0 0 0 2px rgba(styles.$destructive, 0.4);
       }
     }
   }
@@ -45,7 +48,7 @@ textarea[data-slot="textarea"] {
 
   // Dark mode background
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--input) / 0.3);
+    background-color: rgba(styles.$input, 0.3);
   }
 
   // Smooth transitions
@@ -58,37 +61,37 @@ textarea[data-slot="textarea"] {
   resize: none;
 }
 .border-input {
-  border-color: hsl(var(--input));
+  border-color: rgba(styles.$input, 1);
 }
 .placeholder-text-muted-foreground::placeholder {
-  color: hsl(var(--muted-foreground));
+  color: rgba(styles.$muted-foreground, 1);
 }
 
 .focus-visible-border-ring:focus-visible {
-  border-color: hsl(var(--ring));
+  border-color: rgba(styles.$ring, 1);
 }
 .focus-visible-ring-ring-50:focus-visible {
-  --tw-ring-color: hsl(var(--ring) / 0.5);
+  --tw-ring-color: rgba(styles.$ring, 0.5);
 }
 .focus-visible-ring-3:focus-visible {
   box-shadow: 0 0 0 3px var(--tw-ring-color, hsl(var(--ring) / 0.5));
 }
 
 .aria-invalid-ring-destructive-20[aria-invalid="true"] {
-  box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.2);
+  box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.2);
 }
 .dark-aria-invalid-ring-destructive-40[aria-invalid="true"] {
   @media (prefers-color-scheme: dark) {
-    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.4);
+    box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.4);
   }
 }
 .aria-invalid-border-destructive[aria-invalid="true"] {
-  border-color: hsl(var(--destructive));
+  border-color: rgba(styles.$destructive, 1);
 }
 
 .dark-bg-input-30 {
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--input) / 0.3);
+    background-color: rgba(styles.$input, 0.3);
   }
 }
 
@@ -111,7 +114,7 @@ textarea[data-slot="textarea"] {
   border-width: 1px;
 }
 .bg-input-background {
-  background-color: hsl(var(--background));
+  background-color: rgba(styles.$background, 1);
 }
 .px-3 {
   padding-left: 0.75rem;
