@@ -1,0 +1,143 @@
+<section
+  id="home"
+  class="min-h-screen flex items-center justify-center relative overflow-hidden"
+>
+  <!-- Animated Background -->
+  <div class="absolute inset-0">
+    <!-- Gradient Orbs -->
+    <div
+      class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl gradient-orb-1"
+      [ngStyle]="getGradientOrbStyles(true)"
+    ></div>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl gradient-orb-2"
+      [ngStyle]="getGradientOrbStyles(false)"
+    ></div>
+
+    <!-- Floating Particles -->
+    <div
+      *ngFor="let particle of particles; trackBy: trackByParticleId"
+      class="absolute w-1 h-1 bg-primary/30 rounded-full floating-particle"
+      [ngStyle]="getParticleStyles(particle)"
+    ></div>
+
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 grid-pattern"></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+    <div [@containerAnimation] class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content -->
+        <div class="space-y-8">
+          <div [@itemAnimation] class="space-y-4">
+            <div
+              class="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium hover-scale"
+            >
+              👋 Available for hire
+            </div>
+
+            <h1
+              class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight"
+            >
+              Hi, I'm
+              <span class="gradient-text animate-shimmer"> Amaan Shaikh </span>
+            </h1>
+
+            <div class="text-2xl md:text-3xl font-light text-foreground/80">
+              <span class="inline-block color-changing-text">
+                Full Stack Developer
+              </span>
+            </div>
+          </div>
+
+          <p
+            [@itemAnimation]
+            class="text-xl text-foreground/70 leading-relaxed max-w-lg"
+          >
+            Building scalable, modern web applications with
+            <span class="text-primary font-semibold">Angular</span>,
+            <span class="text-cyan-400 font-semibold">.NET Core</span>, and
+            <span class="text-green-400 font-semibold">AI technologies</span>
+          </p>
+
+          <div [@itemAnimation] class="flex flex-wrap gap-4">
+            <app-button
+              size="lg"
+              className="bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 neon-border"
+            >
+              <lucide-icon [img]="Mail" class="w-5 h-5 mr-2"></lucide-icon>
+              Hire Me
+            </app-button>
+
+            <app-button
+              variant="outline"
+              size="lg"
+              className="glass-effect border-primary/50 text-primary hover:bg-primary/10 px-8 py-3 rounded-2xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <lucide-icon [img]="Download" class="w-5 h-5 mr-2"></lucide-icon>
+              Resume
+            </app-button>
+          </div>
+
+          <div [@itemAnimation] class="flex gap-4">
+            <a
+              *ngFor="let social of socialLinks; trackBy: trackBySocialIndex"
+              [href]="social.href"
+              [class]="
+                'p-3 glass-effect rounded-xl text-foreground/60 transition-all duration-300 hover:scale-110 social-link ' +
+                social.color
+              "
+            >
+              <lucide-icon [img]="social.icon" class="w-6 h-6"></lucide-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Image -->
+        <div [@itemAnimation] class="flex justify-center lg:justify-end">
+          <div class="relative">
+            <div class="w-80 h-80 lg:w-96 lg:h-96 relative profile-container">
+              <!-- Glowing Ring -->
+              <div class="absolute inset-0 rounded-full glowing-ring">
+                <div class="w-full h-full bg-background rounded-full"></div>
+              </div>
+
+              <app-image-with-fallback
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                alt="Amaan Shaikh - Full Stack Developer"
+                className="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full object-cover animate-float"
+              >
+              </app-image-with-fallback>
+
+              <!-- Floating Icons -->
+              <div
+                *ngFor="let item of floatingIcons; trackBy: trackByIconIndex"
+                [class]="'absolute text-2xl floating-icon ' + item.position"
+                [style.animation-delay]="item.delay + 's'"
+              >
+                <div class="p-2 glass-effect rounded-xl">
+                  {{ item.icon }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        [@fadeInUp]
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <div
+          class="flex flex-col items-center gap-2 text-foreground/60 cursor-pointer scroll-indicator"
+          (click)="scrollToAbout()"
+        >
+          <span class="text-sm font-medium">Scroll Down</span>
+          <lucide-icon [img]="ArrowDown" class="w-5 h-5"></lucide-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

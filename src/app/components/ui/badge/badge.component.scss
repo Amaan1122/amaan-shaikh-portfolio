@@ -1,0 +1,66 @@
+:host {
+  display: inline-block;
+  
+  // SVG specific styles (equivalent to [&>svg]:size-3 [&>svg]:pointer-events-none)
+  ::ng-deep svg {
+    width: 0.75rem; // size-3 equivalent
+    height: 0.75rem;
+    pointer-events: none;
+  }
+}
+
+.badge-svg-styles {
+  ::ng-deep svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    pointer-events: none;
+  }
+}
+
+// Link-specific hover styles (equivalent to [a&]:hover:)
+.a-hover-styles {
+  &:hover {
+    // These will be overridden by specific variant classes
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+// Variant-specific styles that need SCSS nesting
+.badge {
+  // Focus visible styles
+  &:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.5);
+  }
+
+  // Invalid state styles
+  &[aria-invalid="true"] {
+    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.2);
+    border-color: hsl(var(--destructive));
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.4);
+    }
+  }
+
+  // Transition for smooth state changes
+  transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+// Utility classes for Tailwind-like functionality
+.inline-flex { display: inline-flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.rounded-md { border-radius: 0.375rem; }
+.border { border-width: 1px; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.font-medium { font-weight: 500; }
+.w-fit { width: fit-content; }
+.whitespace-nowrap { white-space: nowrap; }
+.shrink-0 { flex-shrink: 0; }
+.gap-1 { gap: 0.25rem; }
+.overflow-hidden { overflow: hidden; }
+.border-transparent { border-color: transparent; }

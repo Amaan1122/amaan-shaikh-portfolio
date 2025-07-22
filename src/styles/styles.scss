@@ -1,0 +1,360 @@
+// Font imports
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+
+// Custom variant
+@custom-variant dark (&:is(.dark *));
+
+// SCSS Variables - Converting CSS custom properties to SCSS variables
+$font-size: 14px;
+$background: #0a0a0f;
+$foreground: #e4e4e7;
+$card: #111118;
+$card-foreground: #e4e4e7;
+$popover: #111118;
+$popover-foreground: #e4e4e7;
+$primary: #7c3aed;
+$primary-foreground: #ffffff;
+$secondary: #1e1e2e;
+$secondary-foreground: #e4e4e7;
+$muted: #27272a;
+$muted-foreground: #a1a1aa;
+$accent: #2e2e3e;
+$accent-foreground: #e4e4e7;
+$destructive: #ef4444;
+$destructive-foreground: #ffffff;
+$border: rgba(255, 255, 255, 0.1);
+$input: rgba(255, 255, 255, 0.05);
+$input-background: #1e1e2e;
+$switch-background: #3f3f46;
+$font-weight-medium: 500;
+$font-weight-normal: 400;
+$ring: #7c3aed;
+$chart-1: #7c3aed;
+$chart-2: #06b6d4;
+$chart-3: #10b981;
+$chart-4: #f59e0b;
+$chart-5: #ef4444;
+$radius: 0.75rem;
+$sidebar: #111118;
+$sidebar-foreground: #e4e4e7;
+$sidebar-primary: #7c3aed;
+$sidebar-primary-foreground: #ffffff;
+$sidebar-accent: #1e1e2e;
+$sidebar-accent-foreground: #e4e4e7;
+$sidebar-border: rgba(255, 255, 255, 0.1);
+$sidebar-ring: #7c3aed;
+
+// Custom gradient variables
+$gradient-primary: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+$gradient-secondary: linear-gradient(135deg, #1e1e2e 0%, #2e2e3e 100%);
+$gradient-accent: linear-gradient(135deg, #7c3aed20 0%, #06b6d420 100%);
+
+// Glow effects
+$glow-primary: 0 0 20px rgba(124, 58, 237, 0.3);
+$glow-secondary: 0 0 30px rgba(6, 182, 212, 0.2);
+
+// Root CSS custom properties (keeping these for compatibility)
+:root {
+  --font-size: #{$font-size};
+  --background: #{$background};
+  --foreground: #{$foreground};
+  --card: #{$card};
+  --card-foreground: #{$card-foreground};
+  --popover: #{$popover};
+  --popover-foreground: #{$popover-foreground};
+  --primary: #{$primary};
+  --primary-foreground: #{$primary-foreground};
+  --secondary: #{$secondary};
+  --secondary-foreground: #{$secondary-foreground};
+  --muted: #{$muted};
+  --muted-foreground: #{$muted-foreground};
+  --accent: #{$accent};
+  --accent-foreground: #{$accent-foreground};
+  --destructive: #{$destructive};
+  --destructive-foreground: #{$destructive-foreground};
+  --border: #{$border};
+  --input: #{$input};
+  --input-background: #{$input-background};
+  --switch-background: #{$switch-background};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-normal: #{$font-weight-normal};
+  --ring: #{$ring};
+  --chart-1: #{$chart-1};
+  --chart-2: #{$chart-2};
+  --chart-3: #{$chart-3};
+  --chart-4: #{$chart-4};
+  --chart-5: #{$chart-5};
+  --radius: #{$radius};
+  --sidebar: #{$sidebar};
+  --sidebar-foreground: #{$sidebar-foreground};
+  --sidebar-primary: #{$sidebar-primary};
+  --sidebar-primary-foreground: #{$sidebar-primary-foreground};
+  --sidebar-accent: #{$sidebar-accent};
+  --sidebar-accent-foreground: #{$sidebar-accent-foreground};
+  --sidebar-border: #{$sidebar-border};
+  --sidebar-ring: #{$sidebar-ring};
+
+  // Custom gradient variables
+  --gradient-primary: #{$gradient-primary};
+  --gradient-secondary: #{$gradient-secondary};
+  --gradient-accent: #{$gradient-accent};
+
+  // Glow effects
+  --glow-primary: #{$glow-primary};
+  --glow-secondary: #{$glow-secondary};
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", sans-serif;
+    background: radial-gradient(
+        ellipse 80% 80% at 50% -20%,
+        rgba(124, 58, 237, 0.3),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 80% 80% at 80% 60%,
+        rgba(6, 182, 212, 0.2),
+        transparent
+      ),
+      $background;
+    background-attachment: fixed;
+  }
+
+  // Scrollbar styling using nesting
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, $primary, $chart-2);
+    border-radius: 4px;
+
+    &:hover {
+      background: linear-gradient(to bottom, $chart-2, $primary);
+    }
+  }
+}
+
+// Custom animations using SCSS features
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: $glow-primary;
+  }
+  50% {
+    box-shadow: $glow-secondary;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Utility classes with SCSS variables
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-border {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5),
+    inset 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+// Base typography with SCSS nesting
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    label {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: $font-size;
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,186 @@
+<section id="skills" class="py-32 relative" #sectionRef>
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute top-3/4 left-3/4 w-64 h-64 bg-green-500/5 rounded-full blur-3xl"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+    <div [@containerAnimation]="getAnimationState()" class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div [@itemAnimation] class="text-center mb-20">
+        <div class="inline-block mb-4 zap-icon-hover">
+          <lucide-icon
+            [img]="Zap"
+            class="w-8 h-8 text-primary mx-auto mb-4"
+          ></lucide-icon>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black mb-6">
+          Technical <span class="gradient-text">Expertise</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-primary to-cyan-500 mx-auto rounded-full mb-6"
+        ></div>
+        <p class="text-lg text-foreground/70 max-w-2xl mx-auto">
+          Mastery across the full technology stack with cutting-edge tools and
+          frameworks
+        </p>
+      </div>
+
+      <!-- Skills Overview Cards -->
+      <div [@itemAnimation] class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div
+          *ngFor="let stat of statsData; trackBy: trackByStatLabel"
+          class="stat-card"
+        >
+          <app-card
+            className="glass-effect border-0 p-6 text-center hover:neon-border transition-all duration-300"
+          >
+            <lucide-icon
+              [img]="stat.icon"
+              [class]="'w-8 h-8 mx-auto mb-3 ' + stat.color"
+            ></lucide-icon>
+            <div class="text-2xl font-black gradient-text mb-1">
+              {{ stat.value }}
+            </div>
+            <div class="text-sm text-foreground/60">{{ stat.label }}</div>
+          </app-card>
+        </div>
+      </div>
+
+      <!-- Skills Categories -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div
+          *ngFor="
+            let category of skillCategories;
+            trackBy: trackByCategoryIndex;
+            let categoryIndex = index
+          "
+          [@itemAnimation]
+          class="category-card"
+          (mouseenter)="onCategoryHover(categoryIndex)"
+          (mouseleave)="onCategoryLeave()"
+        >
+          <app-card
+            className="glass-effect border-0 p-8 h-full hover:neon-border transition-all duration-500 relative overflow-hidden"
+          >
+            <!-- Background Glow Effect -->
+            <div
+              [class]="'absolute inset-0 ' + category.bgGlow"
+              [style.opacity]="getBgGlowOpacity(categoryIndex)"
+              [style.transition]="'opacity 0.3s ease-in-out'"
+            ></div>
+
+            <app-card-header className="pb-6 relative z-10">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  [class]="
+                    'p-3 rounded-xl bg-gradient-to-r shadow-lg icon-hover ' +
+                    category.color
+                  "
+                >
+                  <lucide-icon
+                    [img]="category.icon"
+                    class="w-6 h-6 text-white"
+                  ></lucide-icon>
+                </div>
+                <app-card-title className="text-xl font-bold text-foreground">
+                  {{ category.title }}
+                </app-card-title>
+              </div>
+            </app-card-header>
+
+            <app-card-content className="space-y-6 relative z-10">
+              <div
+                *ngFor="
+                  let skill of category.skills;
+                  trackBy: trackBySkillName;
+                  let skillIndex = index
+                "
+                class="space-y-3 skill-item"
+                [style.animation-delay]="
+                  getSkillAnimationDelay(categoryIndex, skillIndex)
+                "
+              >
+                <div class="flex justify-between items-center">
+                  <div class="flex items-center gap-3">
+                    <div
+                      [class]="'w-3 h-3 rounded-full skill-dot ' + skill.color"
+                      [style.animation-delay]="skillIndex * 0.5 + 's'"
+                    ></div>
+                    <span class="font-medium text-foreground">{{
+                      skill.name
+                    }}</span>
+                  </div>
+                  <div class="badge-hover">
+                    <app-badge
+                      variant="secondary"
+                      className="bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {{ skill.level }}%
+                    </app-badge>
+                  </div>
+                </div>
+
+                <div class="relative">
+                  <div
+                    class="w-full bg-muted/20 rounded-full h-2 overflow-hidden"
+                  >
+                    <div
+                      [class]="
+                        'h-full rounded-full relative progress-bar ' +
+                        skill.color
+                      "
+                      [style.width]="getSkillProgressWidth(skill)"
+                      [style.transition]="'width 1.5s ease-out'"
+                      [style.animation-delay]="
+                        getSkillAnimationDelay(categoryIndex, skillIndex)
+                      "
+                    >
+                      <!-- Shimmer effect -->
+                      <div
+                        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent shimmer-effect"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </app-card-content>
+          </app-card>
+        </div>
+      </div>
+
+      <!-- Additional Skills Tags -->
+      <div [@itemAnimation] class="mt-16 text-center">
+        <h3 class="text-xl font-semibold mb-8 text-foreground">
+          Additional Technologies & Tools
+        </h3>
+        <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div
+            *ngFor="
+              let tool of additionalTools;
+              trackBy: trackByTool;
+              let i = index
+            "
+            class="tool-badge"
+            [style.animation-delay]="getToolAnimationDelay(i)"
+          >
+            <app-badge
+              variant="outline"
+              className="glass-effect border-primary/20 text-foreground/80 hover:bg-primary/10 hover:text-primary transition-all duration-300 px-4 py-2"
+            >
+              {{ tool }}
+            </app-badge>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

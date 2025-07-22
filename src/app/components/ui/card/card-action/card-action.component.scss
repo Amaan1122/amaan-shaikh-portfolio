@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+// Grid positioning
+.col-start-2 { grid-column-start: 2; }
+.row-span-2 { grid-row: span 2; }
+.row-start-1 { grid-row-start: 1; }
+.self-start { align-self: start; }
+.justify-self-end { justify-self: end; }

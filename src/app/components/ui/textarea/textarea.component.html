@@ -1,0 +1,22 @@
+<textarea
+  [attr.data-slot]="'textarea'"
+  [class]="getTextareaClasses()"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [readonly]="readonly"
+  [required]="required"
+  [id]="id"
+  [name]="name"
+  [value]="value"
+  [rows]="rows"
+  [cols]="cols"
+  [attr.maxlength]="maxlength"
+  [attr.minlength]="minlength"
+  [attr.aria-label]="ariaLabel"
+  [attr.aria-describedby]="ariaDescribedBy"
+  [attr.aria-invalid]="ariaInvalid"
+  (input)="onInput($event)"
+  (focus)="onFocus($event)"
+  (blur)="onBlur($event)"
+  >{{ value }}</textarea
+>

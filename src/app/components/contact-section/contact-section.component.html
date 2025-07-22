@@ -1,0 +1,271 @@
+<section id="contact" class="py-32 relative" #sectionRef>
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+    <div [@containerAnimation]="getAnimationState()" class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div [@itemAnimation] class="text-center mb-20">
+        <div class="inline-block mb-4 message-icon-hover">
+          <lucide-icon
+            [img]="MessageSquare"
+            class="w-8 h-8 text-primary mx-auto mb-4"
+          ></lucide-icon>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black mb-6">
+          Get In <span class="gradient-text">Touch</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-primary to-cyan-500 mx-auto rounded-full mb-6"
+        ></div>
+        <p class="text-lg text-foreground/70 max-w-2xl mx-auto">
+          Ready to bring your next project to life? Let's discuss how we can
+          work together to create something amazing.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Contact Form -->
+        <div [@itemAnimation] class="lg:col-span-2">
+          <app-card
+            className="glass-effect border-0 p-8 hover:neon-border transition-all duration-500"
+          >
+            <app-card-header className="pb-8">
+              <app-card-title
+                className="text-2xl font-bold text-foreground flex items-center gap-3"
+              >
+                <lucide-icon
+                  [img]="Send"
+                  class="w-6 h-6 text-primary"
+                ></lucide-icon>
+                Send a Message
+              </app-card-title>
+              <p class="text-foreground/60">
+                I'll get back to you within 24 hours
+              </p>
+            </app-card-header>
+
+            <app-card-content>
+              <form
+                [formGroup]="contactForm"
+                (ngSubmit)="onSubmit()"
+                class="space-y-6"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2 form-field-hover">
+                    <app-label
+                      htmlFor="name"
+                      className="text-foreground flex items-center gap-2"
+                    >
+                      <lucide-icon [img]="User" class="w-4 h-4"></lucide-icon>
+                      Full Name
+                    </app-label>
+                    <app-input
+                      id="name"
+                      formControlName="name"
+                      placeholder="Your full name"
+                      className="glass-effect border-primary/20 focus:border-primary focus:ring-primary/20 bg-background/50 text-foreground placeholder:text-foreground/40"
+                      [class.border-red-500]="isFieldInvalid('name')"
+                    >
+                    </app-input>
+                    <div
+                      *ngIf="isFieldInvalid('name')"
+                      class="text-red-400 text-sm"
+                    >
+                      {{ getFieldError("name") }}
+                    </div>
+                  </div>
+
+                  <div class="space-y-2 form-field-hover">
+                    <app-label
+                      htmlFor="email"
+                      className="text-foreground flex items-center gap-2"
+                    >
+                      <lucide-icon [img]="Mail" class="w-4 h-4"></lucide-icon>
+                      Email Address
+                    </app-label>
+                    <app-input
+                      id="email"
+                      type="email"
+                      formControlName="email"
+                      placeholder="your.email@example.com"
+                      className="glass-effect border-primary/20 focus:border-primary focus:ring-primary/20 bg-background/50 text-foreground placeholder:text-foreground/40"
+                      [class.border-red-500]="isFieldInvalid('email')"
+                    >
+                    </app-input>
+                    <div
+                      *ngIf="isFieldInvalid('email')"
+                      class="text-red-400 text-sm"
+                    >
+                      {{ getFieldError("email") }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-2 form-textarea-hover">
+                  <app-label
+                    htmlFor="message"
+                    className="text-foreground flex items-center gap-2"
+                  >
+                    <lucide-icon
+                      [img]="MessageSquare"
+                      class="w-4 h-4"
+                    ></lucide-icon>
+                    Project Details
+                  </app-label>
+                  <app-textarea
+                    id="message"
+                    formControlName="message"
+                    placeholder="Tell me about your project, timeline, and requirements..."
+                    [rows]="6"
+                    className="glass-effect border-primary/20 focus:border-primary focus:ring-primary/20 bg-background/50 text-foreground placeholder:text-foreground/40 resize-none"
+                    [class.border-red-500]="isFieldInvalid('message')"
+                  >
+                  </app-textarea>
+                  <div
+                    *ngIf="isFieldInvalid('message')"
+                    class="text-red-400 text-sm"
+                  >
+                    {{ getFieldError("message") }}
+                  </div>
+                </div>
+
+                <div class="submit-button-hover">
+                  <app-button
+                    type="submit"
+                    [disabled]="isSubmitting() || contactForm.invalid"
+                    className="w-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+                  >
+                    <div
+                      *ngIf="isSubmitting()"
+                      class="flex items-center justify-center"
+                    >
+                      <div
+                        [@loadingSpinner]
+                        class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full mr-2 loading-spinner"
+                      ></div>
+                      Sending...
+                    </div>
+
+                    <div
+                      *ngIf="!isSubmitting()"
+                      class="flex items-center justify-center"
+                    >
+                      <lucide-icon
+                        [img]="Send"
+                        class="w-5 h-5 mr-2"
+                      ></lucide-icon>
+                      Send Message
+                    </div>
+                  </app-button>
+                </div>
+              </form>
+            </app-card-content>
+          </app-card>
+        </div>
+
+        <!-- Contact Information -->
+        <div [@itemAnimation] class="space-y-6">
+          <!-- Contact Info Cards -->
+          <div class="space-y-4">
+            <div
+              *ngFor="let info of contactInfo; trackBy: trackByContactTitle"
+              class="contact-info-hover"
+            >
+              <app-card
+                className="glass-effect border-0 p-4 hover:neon-border transition-all duration-300"
+              >
+                <app-card-content className="p-0 flex items-center gap-4">
+                  <div [class]="'p-3 rounded-xl ' + info.bgColor">
+                    <lucide-icon
+                      [img]="info.icon"
+                      [class]="'w-5 h-5 ' + info.color"
+                    ></lucide-icon>
+                  </div>
+                  <div class="flex-1">
+                    <p class="font-semibold text-foreground text-sm">
+                      {{ info.title }}
+                    </p>
+                    <p class="text-foreground/80 font-medium">
+                      {{ info.value }}
+                    </p>
+                    <p class="text-foreground/50 text-xs">
+                      {{ info.description }}
+                    </p>
+                  </div>
+                </app-card-content>
+              </app-card>
+            </div>
+          </div>
+
+          <!-- Availability Card -->
+          <div [@itemAnimation] class="availability-hover">
+            <app-card
+              className="glass-effect border-0 p-6 hover:neon-border transition-all duration-300"
+            >
+              <app-card-content className="p-0 text-center">
+                <lucide-icon
+                  [img]="Calendar"
+                  class="w-8 h-8 text-green-400 mx-auto mb-3"
+                ></lucide-icon>
+                <h3 class="font-semibold text-foreground mb-2">
+                  Current Availability
+                </h3>
+                <div class="flex items-center justify-center gap-2 mb-2">
+                  <div
+                    class="w-3 h-3 bg-green-400 rounded-full animate-pulse"
+                  ></div>
+                  <span class="text-green-400 font-medium"
+                    >Available for new projects</span
+                  >
+                </div>
+                <p class="text-foreground/60 text-sm">Starting February 2024</p>
+              </app-card-content>
+            </app-card>
+          </div>
+
+          <!-- Social Links -->
+          <div [@itemAnimation]>
+            <app-card
+              className="glass-effect border-0 p-6 hover:neon-border transition-all duration-300"
+            >
+              <app-card-content className="p-0">
+                <h3 class="font-semibold text-foreground mb-4 text-center">
+                  Connect With Me
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                  <button
+                    *ngFor="
+                      let social of socialLinks;
+                      trackBy: trackBySocialName
+                    "
+                    (click)="openExternalLink(social.href)"
+                    [class]="
+                      'flex items-center gap-3 p-3 glass-effect rounded-xl text-foreground/70 transition-all duration-300 social-link-hover ' +
+                      social.color +
+                      ' ' +
+                      social.bgHover
+                    "
+                  >
+                    <lucide-icon
+                      [img]="social.icon"
+                      class="w-5 h-5"
+                    ></lucide-icon>
+                    <span class="text-sm font-medium">{{ social.name }}</span>
+                  </button>
+                </div>
+              </app-card-content>
+            </app-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

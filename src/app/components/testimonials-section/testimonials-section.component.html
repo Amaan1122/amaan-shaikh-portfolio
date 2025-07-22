@@ -1,0 +1,256 @@
+<section id="testimonials" class="py-32 relative" #sectionRef>
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-1/3 left-1/6 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-1/3 right-1/6 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute top-2/3 left-2/3 w-64 h-64 bg-green-500/5 rounded-full blur-3xl"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+    <div [@containerAnimation]="getAnimationState()" class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div [@itemAnimation] class="text-center mb-20">
+        <div class="inline-block mb-4 quote-icon-hover">
+          <lucide-icon
+            [img]="Quote"
+            class="w-8 h-8 text-primary mx-auto mb-4"
+          ></lucide-icon>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black mb-6">
+          Client <span class="gradient-text">Testimonials</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-primary to-cyan-500 mx-auto rounded-full mb-6"
+        ></div>
+        <p class="text-lg text-foreground/70 max-w-2xl mx-auto">
+          Trusted by industry leaders and innovative startups worldwide
+        </p>
+      </div>
+
+      <!-- Stats Section -->
+      <div [@itemAnimation] class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div
+          *ngFor="let stat of stats; trackBy: trackByStatLabel"
+          class="stat-card"
+        >
+          <app-card
+            className="glass-effect border-0 p-6 text-center hover:neon-border transition-all duration-300"
+          >
+            <lucide-icon
+              [img]="stat.icon"
+              [class]="'w-8 h-8 mx-auto mb-3 ' + stat.color"
+            ></lucide-icon>
+            <div class="text-2xl font-black gradient-text mb-1">
+              {{ stat.value }}
+            </div>
+            <div class="text-sm text-foreground/60">{{ stat.label }}</div>
+          </app-card>
+        </div>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div
+          *ngFor="
+            let testimonial of testimonials;
+            trackBy: trackByTestimonialName;
+            let i = index
+          "
+          [@cardAnimation]
+          class="relative testimonial-card"
+          (mouseenter)="onCardHover(i)"
+          (mouseleave)="onCardLeave()"
+        >
+          <app-card
+            className="glass-effect border-0 p-8 h-full hover:neon-border transition-all duration-500 relative overflow-hidden"
+          >
+            <!-- Hover Background Effect -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-500/5"
+              [style.opacity]="getHoverBackgroundOpacity(i)"
+              [style.transition]="'opacity 0.3s ease-in-out'"
+            ></div>
+
+            <!-- Quote Icon -->
+            <div
+              class="absolute top-6 right-6 quote-hover-icon"
+              [style.transform]="
+                'scale(' +
+                getQuoteIconScale(i) +
+                ') rotate(' +
+                getQuoteIconRotate(i) +
+                'deg)'
+              "
+              [style.transition]="'transform 0.3s ease-in-out'"
+            >
+              <lucide-icon
+                [img]="Quote"
+                class="w-8 h-8 text-primary/30"
+              ></lucide-icon>
+            </div>
+
+            <app-card-content className="p-0 space-y-6 relative z-10">
+              <!-- Rating Stars -->
+              <div
+                class="flex items-center gap-1 stars-container"
+                [style.opacity]="isInView() ? 1 : 0"
+                [style.transform]="
+                  isInView() ? 'translateX(0)' : 'translateX(-20px)'
+                "
+                [style.transition]="
+                  'opacity 0.5s ease-out, transform 0.5s ease-out'
+                "
+                [style.transition-delay]="getTestimonialAnimationDelay(i, 0.3)"
+              >
+                <div
+                  *ngFor="
+                    let star of getRatingArray(testimonial.rating);
+                    trackBy: trackByIndex;
+                    let starIndex = index
+                  "
+                  class="star-icon"
+                  [class.star-animate]="shouldAnimateStars(i)"
+                  [style.animation-delay]="getStarAnimationDelay(starIndex)"
+                >
+                  <lucide-icon
+                    [img]="Star"
+                    class="w-5 h-5 fill-yellow-400 text-yellow-400"
+                  ></lucide-icon>
+                </div>
+              </div>
+
+              <!-- Testimonial Content -->
+              <div
+                class="testimonial-content"
+                [style.opacity]="isInView() ? 1 : 0"
+                [style.transform]="
+                  isInView() ? 'translateY(0)' : 'translateY(20px)'
+                "
+                [style.transition]="
+                  'opacity 0.5s ease-out, transform 0.5s ease-out'
+                "
+                [style.transition-delay]="getTestimonialAnimationDelay(i, 0.4)"
+              >
+                <p class="text-foreground/80 leading-relaxed italic mb-4">
+                  "{{ testimonial.content }}"
+                </p>
+              </div>
+
+              <!-- Project Details -->
+              <div
+                class="flex flex-wrap gap-2 mb-6 project-details"
+                [style.opacity]="isInView() ? 1 : 0"
+                [style.transform]="
+                  isInView() ? 'translateY(0)' : 'translateY(20px)'
+                "
+                [style.transition]="
+                  'opacity 0.5s ease-out, transform 0.5s ease-out'
+                "
+                [style.transition-delay]="getTestimonialAnimationDelay(i, 0.5)"
+              >
+                <app-badge
+                  variant="secondary"
+                  className="bg-primary/10 text-primary border-primary/20"
+                >
+                  {{ testimonial.projectType }}
+                </app-badge>
+                <app-badge
+                  variant="outline"
+                  className="border-foreground/20 text-foreground/70"
+                >
+                  {{ testimonial.duration }}
+                </app-badge>
+              </div>
+
+              <!-- Highlight Badge -->
+              <div
+                class="mb-6 highlight-badge"
+                [style.opacity]="isInView() ? 1 : 0"
+                [style.transform]="isInView() ? 'scale(1)' : 'scale(0.8)'"
+                [style.transition]="
+                  'opacity 0.5s ease-out, transform 0.5s ease-out'
+                "
+                [style.transition-delay]="getTestimonialAnimationDelay(i, 0.6)"
+              >
+                <app-badge
+                  className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border-green-500/30"
+                >
+                  ✨ {{ testimonial.highlight }}
+                </app-badge>
+              </div>
+
+              <!-- Client Info -->
+              <div
+                class="flex items-center gap-4 pt-4 border-t border-foreground/10 client-info"
+                [style.opacity]="isInView() ? 1 : 0"
+                [style.transform]="
+                  isInView() ? 'translateX(0)' : 'translateX(-20px)'
+                "
+                [style.transition]="
+                  'opacity 0.5s ease-out, transform 0.5s ease-out'
+                "
+                [style.transition-delay]="getTestimonialAnimationDelay(i, 0.7)"
+              >
+                <div class="avatar-hover">
+                  <app-image-with-fallback
+                    [src]="testimonial.avatar"
+                    [alt]="testimonial.name"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-primary/20"
+                  >
+                  </app-image-with-fallback>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-foreground">
+                    {{ testimonial.name }}
+                  </h4>
+                  <p class="text-sm text-foreground/60">
+                    {{ testimonial.role }}
+                  </p>
+                  <p class="text-xs text-primary font-medium">
+                    {{ testimonial.company }}
+                  </p>
+                </div>
+              </div>
+            </app-card-content>
+          </app-card>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div [@itemAnimation] class="text-center mt-16">
+        <div class="cta-card">
+          <app-card
+            className="glass-effect border-0 p-8 max-w-2xl mx-auto hover:neon-border transition-all duration-300"
+          >
+            <app-card-content className="p-0">
+              <h3 class="text-2xl font-bold mb-4">
+                Ready to Join These
+                <span class="gradient-text">Success Stories?</span>
+              </h3>
+              <p class="text-foreground/70 mb-6">
+                Let's discuss your project and see how we can create something
+                amazing together.
+              </p>
+              <button
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl cta-button"
+                (click)="scrollToContact()"
+              >
+                <lucide-icon
+                  [img]="MessageCircle"
+                  class="w-5 h-5"
+                ></lucide-icon>
+                Start Your Project
+              </button>
+            </app-card-content>
+          </app-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

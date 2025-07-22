@@ -1,0 +1,14 @@
+<div
+  [attr.data-slot]="'progress'"
+  [class]="getProgressClasses()"
+  [attr.role]="'progressbar'"
+  [attr.aria-valuenow]="value"
+  [attr.aria-valuemin]="0"
+  [attr.aria-valuemax]="max"
+>
+  <div
+    data-slot="progress-indicator"
+    class="bg-primary h-full w-full flex-1 transition-all"
+    [style.transform]="getIndicatorTransform()"
+  ></div>
+</div>

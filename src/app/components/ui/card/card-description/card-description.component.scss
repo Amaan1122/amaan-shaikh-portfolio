@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+.text-muted-foreground { color: hsl(var(--muted-foreground)); }
+
+p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
