@@ -1,5 +1,4 @@
 @use "../../../../styles/styles.scss";
-@use "../../../../styles/utilities.scss";
 
 :host {
   display: block;
@@ -13,36 +12,4 @@ div[data-slot="progress"] {
   div[data-slot="progress-indicator"] {
     transition: transform 0.2s ease-in-out;
   }
-}
-
-// Utility classes
-.bg-primary\/20 {
-  background-color: rgba(styles.$primary, 0.2);
-}
-.bg-primary {
-  background-color: rgba(styles.$primary, 1);
-}
-.relative {
-  position: relative;
-}
-.h-2 {
-  height: 0.5rem;
-}
-.w-full {
-  width: 100%;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-.rounded-full {
-  border-radius: 9999px;
-}
-.h-full {
-  height: 100%;
-}
-.flex-1 {
-  flex: 1;
-}
-.transition-all {
-  transition: all 0.2s ease-in-out;
 }

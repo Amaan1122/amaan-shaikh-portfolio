@@ -1,5 +1,4 @@
 @use "../../../../styles/styles.scss";
-@use "../../../../styles/utilities.scss";
 
 :host {
   display: block;
@@ -60,9 +59,7 @@ textarea[data-slot="textarea"] {
 .resize-none {
   resize: none;
 }
-.border-input {
-  border-color: rgba(styles.$input, 1);
-}
+
 .placeholder-text-muted-foreground::placeholder {
   color: rgba(styles.$muted-foreground, 1);
 }
@@ -70,9 +67,11 @@ textarea[data-slot="textarea"] {
 .focus-visible-border-ring:focus-visible {
   border-color: rgba(styles.$ring, 1);
 }
+
 .focus-visible-ring-ring-50:focus-visible {
   --tw-ring-color: rgba(styles.$ring, 0.5);
 }
+
 .focus-visible-ring-3:focus-visible {
   box-shadow: 0 0 0 3px var(--tw-ring-color, hsl(var(--ring) / 0.5));
 }
@@ -80,11 +79,13 @@ textarea[data-slot="textarea"] {
 .aria-invalid-ring-destructive-20[aria-invalid="true"] {
   box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.2);
 }
+
 .dark-aria-invalid-ring-destructive-40[aria-invalid="true"] {
   @media (prefers-color-scheme: dark) {
     box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.4);
   }
 }
+
 .aria-invalid-border-destructive[aria-invalid="true"] {
   border-color: rgba(styles.$destructive, 1);
 }
@@ -95,46 +96,14 @@ textarea[data-slot="textarea"] {
   }
 }
 
-.flex {
-  display: flex;
-}
-.field-sizing-content {
-  field-sizing: content;
-} // CSS field-sizing property
-.min-h-16 {
-  min-height: 4rem;
-}
-.w-full {
-  width: 100%;
-}
-.rounded-md {
-  border-radius: 0.375rem;
-}
-.border {
-  border-width: 1px;
-}
 .bg-input-background {
   background-color: rgba(styles.$background, 1);
-}
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-.outline-none {
-  outline: none;
 }
 
 .disabled-cursor-not-allowed:disabled {
   cursor: not-allowed;
 }
+
 .disabled-opacity-50:disabled {
   opacity: 0.5;
 }

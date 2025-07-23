@@ -1,6 +1,7 @@
 @use "styles.scss";
 
 // Common Effects
+
 .glass-effect {
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
@@ -129,4 +130,77 @@
   100% {
     background-position: 200% 0;
   }
+}
+
+// Hover effects
+
+.bg-primary:hover {
+  background-color: rgba(styles.$primary, 0.9);
+}
+.bg-destructive:hover {
+  background-color: rgba(styles.$destructive, 0.9);
+}
+.bg-secondary:hover {
+  background-color: rgba(styles.$secondary, 0.8);
+}
+.hover\:bg-accent:hover {
+  background-color: rgba(styles.$accent, 1);
+}
+.hover\:text-accent-foreground:hover {
+  color: rgba(styles.$accent-foreground, 1);
+}
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+.hover\:text-primary:hover {
+  color: #7c3aed;
+}
+.hover\:text-gray-300:hover {
+  color: #d1d5db;
+}
+.hover\:text-blue-400:hover {
+  color: #60a5fa;
+}
+.hover\:text-green-400:hover {
+  color: #4ade80;
+}
+.hover\:-translate-y-1:hover {
+  transform: translateY(-0.25rem);
+}
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
+
+// Transitions
+
+.transition-all {
+  transition: all 0.15s ease-in-out;
+}
+.transition-colors {
+  transition: color 0.15s ease-in-out;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.duration-500 {
+  transition-duration: 500ms;
+}
+.transform {
+  transform: translateZ(0);
+}
+.-translate-x-1\/2 {
+  transform: translateX(-50%);
+}
+
+// Other Effects
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
