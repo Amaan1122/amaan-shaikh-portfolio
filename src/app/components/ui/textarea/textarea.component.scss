@@ -56,10 +56,6 @@ textarea[data-slot="textarea"] {
 }
 
 // Utility classes
-.resize-none {
-  resize: none;
-}
-
 .placeholder-text-muted-foreground::placeholder {
   color: rgba(styles.$muted-foreground, 1);
 }
