@@ -3,10 +3,6 @@ import {
   Input,
   HostBinding,
   ChangeDetectionStrategy,
-  ElementRef,
-  Renderer2,
-  OnInit,
-  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./label.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LabelComponent implements OnInit, OnDestroy {
+export class LabelComponent {
   @Input() className: string = '';
   @Input() htmlFor: string = '';
 
@@ -32,19 +28,7 @@ export class LabelComponent implements OnInit, OnDestroy {
     return this.getLabelClasses();
   }
 
-  private mutationObserver?: MutationObserver;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
-
-  ngOnInit(): void {
-    this.setupPeerObserver();
-  }
-
-  ngOnDestroy(): void {
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
-  }
+  constructor() {}
 
   getLabelClasses(): string {
     const baseClasses = `
@@ -54,43 +38,5 @@ export class LabelComponent implements OnInit, OnDestroy {
     `;
 
     return `${baseClasses} ${this.className}`.trim();
-  }
-
-  private setupPeerObserver(): void {
-    // Watch for peer disabled states
-    this.mutationObserver = new MutationObserver(() => {
-      this.updatePeerStates();
-    });
-
-    this.mutationObserver.observe(document.body, {
-      attributes: true,
-      subtree: true,
-      attributeFilter: ['disabled', 'aria-disabled', 'data-disabled'],
-    });
-  }
-
-  private updatePeerStates(): void {
-    const labelElement = this.elementRef.nativeElement;
-
-    // Find associated form element
-    let associatedElement: HTMLElement | null = null;
-
-    if (this.htmlFor) {
-      associatedElement = document.getElementById(this.htmlFor);
-    }
-
-    if (associatedElement?.hasAttribute('disabled')) {
-      this.renderer.addClass(labelElement, 'peer-is-disabled');
-    } else {
-      this.renderer.removeClass(labelElement, 'peer-is-disabled');
-    }
-
-    // Check for group disabled state
-    const groupElement = labelElement.closest('[data-disabled="true"]');
-    if (groupElement) {
-      this.renderer.addClass(labelElement, 'group-is-disabled');
-    } else {
-      this.renderer.removeClass(labelElement, 'group-is-disabled');
-    }
   }
 }

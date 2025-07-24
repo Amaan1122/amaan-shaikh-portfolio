@@ -19,30 +19,6 @@ label[data-slot="label"] {
   }
 }
 
-// Utility classes
-.flex {
-  display: flex;
-}
-.items-center {
-  align-items: center;
-}
-.gap-2 {
-  gap: 0.5rem;
-}
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-.leading-none {
-  line-height: 1;
-}
-.font-medium {
-  font-weight: 500;
-}
-.select-none {
-  user-select: none;
-}
-
 // Group disabled states
 .group-data-disabled-pointer-events-none {
   :host-context([data-disabled="true"]) & {

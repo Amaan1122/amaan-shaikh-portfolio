@@ -20,15 +20,16 @@
       </div>
 
       <!-- Mobile Menu Button -->
-      <app-button
-        variant="ghost"
-        size="icon"
-        className="md:hidden"
-        (buttonClick)="toggleMobileMenu()"
+      <button
+        class="md:hidden mobile-menu-btn text-white"
+        (click)="toggleMobileMenu()"
       >
-        <lucide-icon [img]="isMobileMenuOpen() ? X : Menu" class="w-6 h-6 my-icon">
+        <lucide-icon
+          [img]="isMobileMenuOpen() ? X : Menu"
+          class="w-6 h-6 my-icon"
+        >
         </lucide-icon>
-      </app-button>
+      </button>
     </div>
   </div>
 
@@ -52,11 +53,11 @@
 
 <!-- Floating Action Button -->
 <div [@floatingButton] class="fixed right-6 bottom-6 z-40 flex flex-col gap-3">
-  <app-button
+  <button
     size="icon"
-    className="rounded-full w-12 h-12 animate-glow"
-    (buttonClick)="scrollToSection('#home')"
-    >
-    <lucide-icon [img]="Home" class="w-5 h-5 lucide-icon my-icon"></lucide-icon>
-</app-button>
+    class="rounded-full w-12 h-12 animate-glow scroll-home-btn"
+    (click)="scrollToSection('#home')"
+  >
+    <lucide-icon [img]="Home" class="w-5 h-5 text-white home-icon"></lucide-icon>
+  </button>
 </div>
