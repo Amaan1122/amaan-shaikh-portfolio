@@ -1,38 +1,25 @@
-<!-- Error state -->
-<div *ngIf="didError()" [class]="getErrorContainerClasses()" [ngStyle]="style">
+<div
+  *ngIf="didError; else normalImage"
+  [ngClass]="
+    'inline-block bg-gray-100 text-center align-middle ' + (className || '')
+  "
+  [ngStyle]="styleObject"
+>
   <div class="flex items-center justify-center w-full h-full">
     <img
-      [src]="ERROR_IMG_SRC"
+      [src]="errorImgSrc"
       alt="Error loading image"
       [attr.data-original-url]="src"
-      [loading]="loading"
-      [decoding]="decoding"
-      [attr.crossorigin]="crossorigin || null"
-      [attr.referrerpolicy]="referrerpolicy || null"
-      [sizes]="sizes || null"
-      [srcset]="srcset || null"
-      [attr.usemap]="usemap || null"
-      [width]="width || null"
-      [height]="height || null"
     />
   </div>
 </div>
 
-<!-- Normal image -->
-<img
-  *ngIf="!didError()"
-  [src]="src"
-  [alt]="alt"
-  [class]="className"
-  [ngStyle]="style"
-  [loading]="loading"
-  [decoding]="decoding"
-  [attr.crossorigin]="crossorigin || null"
-  [attr.referrerpolicy]="referrerpolicy || null"
-  [sizes]="sizes || null"
-  [srcset]="srcset || null"
-  [attr.usemap]="usemap || null"
-  [width]="width || null"
-  [height]="height || null"
-  (error)="handleError()"
-/>
+<ng-template #normalImage>
+  <img
+    [src]="src"
+    [alt]="alt"
+    [ngClass]="className"
+    [ngStyle]="styleObject"
+    (error)="handleError()"
+  />
+</ng-template>

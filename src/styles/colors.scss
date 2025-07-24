@@ -60,6 +60,12 @@
 .bg-background\/50 {
   background-color: rgba(styles.$background, 0.5);
 }
+.bg-background\/20 {
+  background-color: rgba(styles.$background, 0.2);
+}
+.bg-light {
+  background-color: rgba(styles.$accent, 0.3);
+}
 .bg-transparent {
   background-color: transparent;
 }
@@ -116,6 +122,13 @@
 }
 .bg-purple-500\/10 {
   background-color: rgba(168, 85, 247, 0.1);
+}
+.bg-gradient {
+  background: linear-gradient(
+    110deg,
+    rgba(styles.$primary, 1),
+    rgba(#22d3ee, 1)
+  );
 }
 
 // Gradients

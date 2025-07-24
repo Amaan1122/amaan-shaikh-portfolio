@@ -270,6 +270,9 @@
 .mt-16 {
   margin-top: 4rem;
 }
+.mr-1 {
+  margin-right: 0.25rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -539,6 +542,9 @@
 .top-0 {
   top: 0;
 }
+.top-2 {
+  top: 0.5rem;
+}
 .top-4 {
   top: 1rem;
 }
@@ -556,6 +562,9 @@
 }
 .left-0 {
   left: 0;
+}
+.left-2 {
+  left: 0.5rem;
 }
 .bottom-0 {
   bottom: 0;
@@ -608,4 +617,7 @@
 }
 .object-cover {
   object-fit: cover;
+}
+.letter-spacing-015 {
+  letter-spacing: 0.15px;
 }

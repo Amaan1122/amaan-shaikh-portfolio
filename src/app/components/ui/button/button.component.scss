@@ -2,94 +2,58 @@
 
 :host {
   display: inline-block;
+}
 
-  &.button-host {
-    // Host-specific styles if needed
+// Ensure focus styles work properly
+button {
+  &:focus-visible {
+    outline: none;
   }
 }
 
-// SVG specific styles (equivalent to [&_svg] selectors)
-.button-svg-styles {
+// Custom CSS for advanced selectors that Tailwind might not handle
+button {
+  cursor: pointer;
+  // Handle SVG sizing within button
+  ::ng-deep svg:not([class*="size-"]) {
+    width: 1rem;
+    height: 1rem;
+  }
+
   ::ng-deep svg {
     pointer-events: none;
     flex-shrink: 0;
+  }
 
-    // Default size for SVGs without size classes
-    &:not([class*="size-"]) {
-      width: 1rem; // size-4 equivalent
-      height: 1rem;
+  // Handle padding adjustments when SVG is present
+  &:has(svg) {
+    &.h-9 {
+      // default size
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    &.h-8 {
+      // sm size
+      padding-left: 0.625rem;
+      padding-right: 0.625rem;
+    }
+    &.h-10 {
+      // lg size
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 }
 
-// Custom has-svg selector implementation for different sizes
-.has-svg {
-  &.has-svg-default {
-    padding-left: 0.75rem !important; // px-3
-    padding-right: 0.75rem !important;
+// Subtle gradient animation
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
   }
-
-  &.has-svg-sm {
-    padding-left: 0.625rem !important; // px-2.5
-    padding-right: 0.625rem !important;
+  50% {
+    background-position: 100% 50%;
   }
-
-  &.has-svg-lg {
-    padding-left: 1rem !important; // px-4
-    padding-right: 1rem !important;
-  }
-}
-
-// Base button styles
-button,
-a[data-slot="button"],
-div[data-slot="button"] {
-  cursor: pointer;
-  user-select: none;
-
-  &:disabled,
-  &[aria-disabled="true"] {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  // Focus visible styles
-  &:focus-visible {
-    outline: none;
-    border-color: rgba(styles.$ring, 1);
-    box-shadow: 0 0 0 3px rgba(styles.$ring, 0.5);
-  }
-
-  // Invalid state styles
-  &[aria-invalid="true"] {
-    box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.2);
-    border-color: rgba(styles.$destructive, 1);
-
-    @media (prefers-color-scheme: dark) {
-      box-shadow: 0 0 0 2px rgba(styles.$destructive, 0.4);
-    }
-  }
-
-  // Smooth transitions
-  transition: all 0.2s ease-in-out;
-}
-
-// Dark mode hover effects
-@media (prefers-color-scheme: dark) {
-  .dark\:bg-destructive\/60 {
-    background-color: rgba(styles.$destructive, 0.6);
-  }
-  .dark\:bg-input\/30 {
-    background-color: rgba(styles.$input, 0.3);
-  }
-  .dark\:border-input {
-    border-color: rgba(styles.$input, 1);
-  }
-  .dark\:hover\:bg-input\/50:hover {
-    background-color: rgba(styles.$input, 0.5);
-  }
-  .dark\:hover\:bg-accent\/50:hover {
-    background-color: rgba(styles.$accent, 0.5);
+  100% {
+    background-position: 0% 50%;
   }
 }

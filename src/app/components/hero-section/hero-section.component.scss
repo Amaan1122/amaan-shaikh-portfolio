@@ -221,3 +221,9 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.from-primary {
+  --tw-gradient-from: rgba(styles.$primary, 1);
+  --tw-gradient-to: rgba(styles.$primary, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
