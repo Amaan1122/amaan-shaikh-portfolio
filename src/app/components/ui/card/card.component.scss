@@ -2,12 +2,11 @@
 
 :host {
   display: block;
+  border: none;
+  padding: 0;
 }
 
 // Base card styles
-.bg-card {
-  background-color: rgba(styles.$card, 1);
-}
 .text-card-foreground {
   color: rgba(styles.$card-foreground, 1);
 }
