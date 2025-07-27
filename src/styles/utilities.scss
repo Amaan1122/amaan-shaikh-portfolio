@@ -3,10 +3,6 @@
 // Layout Utilities
 .container {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
 
   @media (min-width: 640px) {
     max-width: 640px;

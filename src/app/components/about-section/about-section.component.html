@@ -9,7 +9,7 @@
     ></div>
   </div>
 
-  <div class="container mx-auto px-6 lg:px-8 relative z-10">
+  <div class="container mx-auto relative z-10">
     <div [@containerAnimation]="getAnimationState()" class="max-w-6xl mx-auto">
       <!-- Section Header -->
       <div [@itemAnimation] class="text-center mb-20">
@@ -95,7 +95,7 @@
             >
               <app-badge
                 variant="secondary"
-                className="px-4 py-2 glass-effect text-primary border border-primary/20 hover:bg-primary/10 transition-all duration-300"
+                className="py-2 glass-effect text-primary border border-primary/20 hover:bg-primary/10 transition-all duration-300"
               >
               {{ skill }}
                 <lucide-icon [img]="Zap" class="w-4 h-4 mr-2"></lucide-icon>
