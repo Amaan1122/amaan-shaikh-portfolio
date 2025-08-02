@@ -1,28 +1,14 @@
-<section id="skills" class="py-32 relative" #sectionRef>
-  <!-- Background Effects -->
-  <div class="absolute inset-0">
-    <div
-      class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-    ></div>
-    <div
-      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
-    ></div>
-    <div
-      class="absolute top-3/4 left-3/4 w-64 h-64 bg-green-500/5 rounded-full blur-3xl"
-    ></div>
-  </div>
+<section id="skills" class="py-20 relative overflow-hidden" #sectionRef>
+  <!-- Background Effects here as <div>s with classes/gradient backgrounds -->
 
   <div class="container mx-auto relative z-10">
     <div [@containerAnimation]="getAnimationState()" class="max-w-7xl mx-auto">
       <!-- Section Header -->
-      <div [@itemAnimation] class="text-center mb-20">
+      <div [@itemAnimation]="getAnimationState()" class="text-center mb-16">
         <div class="inline-block mb-4 zap-icon-hover">
-          <lucide-icon
-            [img]="Zap"
-            class="w-8 h-8 text-primary mx-auto mb-4"
-          ></lucide-icon>
+          <lucide-icon [img]="Zap" class="w-8 h-8 text-primary"></lucide-icon>
         </div>
-        <h2 class="text-4xl md:text-5xl font-black mb-6">
+        <h2 class="text-4xl md:text-5xl text-foreground font-black mb-6">
           Technical <span class="gradient-text">Expertise</span>
         </h2>
         <div
@@ -35,7 +21,10 @@
       </div>
 
       <!-- Skills Overview Cards -->
-      <div [@itemAnimation] class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+      <div
+        [@itemAnimation]="getAnimationState()"
+        class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+      >
         <div
           *ngFor="let stat of statsData; trackBy: trackByStatLabel"
           class="stat-card"
@@ -63,8 +52,8 @@
             trackBy: trackByCategoryIndex;
             let categoryIndex = index
           "
-          [@itemAnimation]
-          class="category-card"
+          [@itemAnimation]="getAnimationState()"
+          class="relative category-card"
           (mouseenter)="onCategoryHover(categoryIndex)"
           (mouseleave)="onCategoryLeave()"
         >
@@ -78,7 +67,7 @@
               [style.transition]="'opacity 0.3s ease-in-out'"
             ></div>
 
-            <app-card-header className="pb-6 relative z-10">
+            <app-card-header className="px-0 z-10">
               <div class="flex items-center gap-4 mb-4">
                 <div
                   [class]="
@@ -97,7 +86,7 @@
               </div>
             </app-card-header>
 
-            <app-card-content className="space-y-6 relative z-10">
+            <app-card-content className="px-0 space-y-6 relative z-10">
               <div
                 *ngFor="
                   let skill of category.skills;

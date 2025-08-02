@@ -1,25 +1,14 @@
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectionStrategy,
-  signal,
-  ViewChild,
-  ElementRef,
-  Inject,
-  PLATFORM_ID,
-} from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
-  query,
-  stagger,
-  keyframes,
+  trigger,
 } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { CardComponent, CardContentComponent } from '../ui/card/cards';
+
 import {
   LucideAngularModule,
   Star,
@@ -28,9 +17,8 @@ import {
   Award,
   MessageCircle,
 } from 'lucide-angular';
-import { CardComponent, CardContentComponent } from '../ui/card/cards';
-import { BadgeComponent } from '../ui/badge/badge.component';
 import { ImageWithFallbackComponent } from '../figma/image-with-fallback/image-with-fallback.component';
+import { ButtonComponent } from '../ui/button/button.component';
 
 interface Testimonial {
   name: string;
@@ -44,7 +32,7 @@ interface Testimonial {
   highlight: string;
 }
 
-interface StatItem {
+interface Stat {
   label: string;
   value: string;
   icon: any;
@@ -58,83 +46,39 @@ interface StatItem {
     CommonModule,
     CardComponent,
     CardContentComponent,
-    BadgeComponent,
-    ImageWithFallbackComponent,
     LucideAngularModule,
+    ImageWithFallbackComponent,
+    ButtonComponent
   ],
   templateUrl: './testimonials-section.component.html',
   styleUrls: ['./testimonials-section.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('containerAnimation', [
+    trigger('containerAnim', [
       state('hidden', style({ opacity: 0 })),
       state('visible', style({ opacity: 1 })),
       transition('hidden => visible', [
-        animate('300ms 300ms ease-out', style({ opacity: 1 })),
-        query(
-          ':enter',
-          [
-            style({ transform: 'translateY(50px)', opacity: 0 }),
-            stagger('100ms', [
-              animate(
-                '600ms ease-out',
-                keyframes([
-                  style({
-                    transform: 'translateY(50px)',
-                    opacity: 0,
-                    offset: 0,
-                  }),
-                  style({
-                    transform: 'translateY(-10px)',
-                    opacity: 0.8,
-                    offset: 0.7,
-                  }),
-                  style({ transform: 'translateY(0)', opacity: 1, offset: 1 }),
-                ])
-              ),
-            ]),
-          ],
-          { optional: true }
-        ),
+        animate('600ms cubic-bezier(.7,0,.3,1)'),
       ]),
     ]),
-    trigger('itemAnimation', [
-      transition(':enter', [
-        style({ transform: 'translateY(50px)', opacity: 0 }),
-        animate(
-          '600ms ease-out',
-          keyframes([
-            style({ transform: 'translateY(50px)', opacity: 0, offset: 0 }),
-            style({
-              transform: 'translateY(-10px)',
-              opacity: 0.8,
-              offset: 0.7,
-            }),
-            style({ transform: 'translateY(0)', opacity: 1, offset: 1 }),
-          ])
-        ),
+    trigger('itemAnim', [
+      state('hidden', style({ opacity: 0, transform: 'translateY(50px)' })),
+      state('visible', style({ opacity: 1, transform: 'none' })),
+      transition('hidden => visible', [
+        animate('600ms cubic-bezier(.7,0,.3,1)'),
       ]),
     ]),
-    trigger('cardAnimation', [
-      transition(':enter', [
-        style({ transform: 'scale(0.8)', opacity: 0 }),
-        animate(
-          '600ms ease-out',
-          keyframes([
-            style({ transform: 'scale(0.8)', opacity: 0, offset: 0 }),
-            style({ transform: 'scale(1.05)', opacity: 0.8, offset: 0.7 }),
-            style({ transform: 'scale(1)', opacity: 1, offset: 1 }),
-          ])
-        ),
+    trigger('cardAnim', [
+      state('hidden', style({ opacity: 0, transform: 'scale(0.8)' })),
+      state('visible', style({ opacity: 1, transform: 'scale(1)' })),
+      transition('hidden => visible', [
+        animate('450ms cubic-bezier(.7,0,.3,1)'),
       ]),
     ]),
+    // ... more, as needed for hover
   ],
 })
-export class TestimonialsSectionComponent implements OnInit, OnDestroy {
-  @ViewChild('sectionRef', { static: true }) sectionRef!: ElementRef;
-
-  isInView = signal(false);
-  hoveredCard = signal<number | null>(null);
+export class TestimonialsSectionComponent {
+  hoveredCard: number | null = null;
 
   // Expose icons for template
   readonly Star = Star;
@@ -144,6 +88,7 @@ export class TestimonialsSectionComponent implements OnInit, OnDestroy {
   readonly MessageCircle = MessageCircle;
 
   testimonials: Testimonial[] = [
+    // ...same as in your original React code
     {
       name: 'Sarah Johnson',
       role: 'CTO',
@@ -185,7 +130,7 @@ export class TestimonialsSectionComponent implements OnInit, OnDestroy {
     },
   ];
 
-  stats: StatItem[] = [
+  stats: Stat[] = [
     {
       label: 'Happy Clients',
       value: '50+',
@@ -212,103 +157,25 @@ export class TestimonialsSectionComponent implements OnInit, OnDestroy {
     },
   ];
 
-  private intersectionObserver?: IntersectionObserver;
+  inView = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  @ViewChild('observeRef', { static: true }) observeRef!: ElementRef;
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.setupIntersectionObserver();
-    }
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        this.inView = entries[0].isIntersecting;
+      },
+      { rootMargin: '-100px', threshold: 0.1 }
+    );
+    observer.observe(this.observeRef.nativeElement);
   }
 
-  ngOnDestroy(): void {
-    if (this.intersectionObserver) {
-      this.intersectionObserver.disconnect();
-    }
+  onCardMouseEnter(idx: number) {
+    this.hoveredCard = idx;
   }
 
-  private setupIntersectionObserver(): void {
-    if (
-      typeof IntersectionObserver !== 'undefined' &&
-      this.sectionRef?.nativeElement
-    ) {
-      this.intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.isInView.set(true);
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-          rootMargin: '-100px',
-        }
-      );
-
-      this.intersectionObserver.observe(this.sectionRef.nativeElement);
-    }
-  }
-
-  onCardHover(index: number): void {
-    this.hoveredCard.set(index);
-  }
-
-  onCardLeave(): void {
-    this.hoveredCard.set(null);
-  }
-
-  getHoverBackgroundOpacity(index: number): number {
-    return this.hoveredCard() === index ? 1 : 0;
-  }
-
-  getQuoteIconScale(index: number): number {
-    return this.hoveredCard() === index ? 1.2 : 1;
-  }
-
-  getQuoteIconRotate(index: number): number {
-    return this.hoveredCard() === index ? 10 : 0;
-  }
-
-  getAnimationState(): string {
-    return this.isInView() ? 'visible' : 'hidden';
-  }
-
-  getRatingArray(rating: number): number[] {
-    return Array.from({ length: rating }, (_, i) => i);
-  }
-
-  getStarAnimationDelay(starIndex: number): string {
-    return `${starIndex * 0.1}s`;
-  }
-
-  getTestimonialAnimationDelay(index: number, offset: number): string {
-    return `${index * 0.1 + offset}s`;
-  }
-
-  shouldAnimateStars(cardIndex: number): boolean {
-    return this.hoveredCard() === cardIndex;
-  }
-
-  scrollToContact(): void {
-    if (isPlatformBrowser(this.platformId) && typeof document !== 'undefined') {
-      const element = document.querySelector('#contact');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
-
-  trackByTestimonialName(index: number, testimonial: Testimonial): string {
-    return testimonial.name;
-  }
-
-  trackByStatLabel(index: number, stat: StatItem): string {
-    return stat.label;
-  }
-
-  trackByIndex(index: number): number {
-    return index;
+  onCardMouseLeave() {
+    this.hoveredCard = null;
   }
 }

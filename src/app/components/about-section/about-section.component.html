@@ -12,14 +12,14 @@
   <div class="container mx-auto relative z-10">
     <div [@containerAnimation]="getAnimationState()" class="max-w-6xl mx-auto">
       <!-- Section Header -->
-      <div [@itemAnimation] class="text-center mb-20">
+      <div [@itemAnimation] class="text-center mb-16">
         <div class="inline-block mb-4 brain-icon-hover">
           <lucide-icon
             [img]="Brain"
             class="w-8 h-8 text-primary mx-auto mb-4"
           ></lucide-icon>
         </div>
-        <h2 class="text-4xl md:text-5xl font-black mb-6">
+        <h2 class="text-4xl md:text-5xl font-black mb-6 mt-0">
           About <span class="gradient-text">Me</span>
         </h2>
         <div
@@ -28,7 +28,7 @@
       </div>
 
       <!-- Stats Grid -->
-      <div [@itemAnimation] class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+      <div [@itemAnimation] class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
         <div
           *ngFor="let stat of stats; trackBy: trackByStatLabel"
           class="text-center stat-card"

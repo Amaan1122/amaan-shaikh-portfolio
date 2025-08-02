@@ -2,9 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
 
-// Custom variant
-@custom-variant dark (&:is(.dark *));
-
 // SCSS Variables - Converting CSS custom properties to SCSS variables
 $font-size: 14px;
 $background: #0a0a0f;
@@ -244,10 +241,7 @@ $glow-secondary: 0 0 30px rgba(6, 182, 212, 0.2);
 html {
   font-size: $font-size;
   scroll-behavior: smooth;
-  overflow-x: hidden !important;
 }
 
 body {
-  overflow-x: hidden !important;
-
 }
