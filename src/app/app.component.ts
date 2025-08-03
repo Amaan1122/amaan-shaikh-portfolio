@@ -8,6 +8,7 @@ import { SkillsSectionComponent } from './components/skills-section/skills-secti
 import { TestimonialsSectionComponent } from './components/testimonials-section/testimonials-section.component';
 import { ContactSectionComponent } from './components/contact-section/contact-section.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { inject } from '@vercel/analytics';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,15 @@ import { FooterComponent } from './components/footer/footer.component';
     SkillsSectionComponent,
     TestimonialsSectionComponent,
     ContactSectionComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Amaan-Shaikh-portfolio';
+
+  ngOnInit(): void {
+    inject(); // Call inject to add the Vercel Analytics script
+  }
 }
