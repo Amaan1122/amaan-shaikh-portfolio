@@ -228,6 +228,10 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -372,6 +376,9 @@
 }
 .underline-offset-4 {
   text-underline-offset: 4px;
+}
+.no-underline {
+  text-decoration: none;
 }
 
 // Sizing

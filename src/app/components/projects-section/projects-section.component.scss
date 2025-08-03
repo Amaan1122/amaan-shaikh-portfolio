@@ -1,9 +1,5 @@
 @use "../../../styles/styles.scss";
 
-:host {
-  display: block;
-}
-
 // Play icon hover
 .play-icon-hover {
   transition: transform 0.2s ease-in-out;
@@ -16,12 +12,16 @@
 // Project card hover
 .project-card {
   transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
 }
 
 // Image hover effect
 .image-hover {
   transition: transform 0.3s ease-in-out;
-
+  
   &:hover {
     transform: scale(1.02);
   }
