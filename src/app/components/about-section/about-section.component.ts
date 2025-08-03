@@ -134,14 +134,16 @@ export class AboutSectionComponent implements OnInit, OnDestroy {
   readonly Award = Award;
 
   technologies: Technology[] = [
-    { name: 'Angular', color: 'from-red-500 to-red-600', level: 95 },
-    { name: '.NET Core', color: 'from-blue-500 to-blue-600', level: 93 },
-    { name: 'TypeScript', color: 'from-blue-400 to-blue-500', level: 90 },
-    { name: 'SQL Server', color: 'from-orange-500 to-orange-600', level: 88 },
-    { name: 'Azure', color: 'from-cyan-500 to-cyan-600', level: 85 },
-    { name: 'AI/ML', color: 'from-purple-500 to-purple-600', level: 78 },
-    { name: 'RxJS', color: 'from-pink-500 to-pink-600', level: 85 },
-    { name: 'Docker', color: 'from-blue-600 to-blue-700', level: 80 },
+    { name: 'Angular', color: 'from-red-500 to-red-600', level: 80 },
+    { name: '.NET Core', color: 'from-blue-500 to-blue-600', level: 70 },
+    { name: 'TypeScript', color: 'from-blue-400 to-blue-500', level: 80 },
+    { name: 'SQL Server', color: 'from-orange-500 to-orange-600', level: 80 },
+    { name: 'HTML5/CSS3', color: 'from-cyan-500 to-cyan-600', level: 85 },
+    { name: 'RxJS', color: 'from-pink-500 to-pink-600', level: 75 },
+    { name: 'Agile', color: 'from-blue-600 to-blue-700', level: 65 },
+    { name: 'Rest APIs', color: 'from-red-500 to-red-600', level: 70 },
+    { name: 'GitHub', color: 'from-orange-500 to-orange-600', level: 75 },
+    { name: 'CI/CD', color: 'from-cyan-500 to-cyan-600', level: 70 },
   ];
 
   stats: Stat[] = [
@@ -153,13 +155,13 @@ export class AboutSectionComponent implements OnInit, OnDestroy {
     },
     {
       icon: Globe,
-      value: '50+',
+      value: '15+',
       label: 'Projects Delivered',
       color: 'text-cyan-400',
     },
     {
       icon: Users,
-      value: '25+',
+      value: '10+',
       label: 'Happy Clients',
       color: 'text-green-400',
     },

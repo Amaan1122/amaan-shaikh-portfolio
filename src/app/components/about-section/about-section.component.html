@@ -19,7 +19,7 @@
             class="w-8 h-8 text-primary mx-auto mb-4"
           ></lucide-icon>
         </div>
-        <h2 class="text-4xl md:text-5xl font-black mb-6 mt-0">
+        <h2 class="text-4xl md:text-5xl text-foreground font-black mb-6 mt-0">
           About <span class="gradient-text">Me</span>
         </h2>
         <div
@@ -31,16 +31,16 @@
       <div [@itemAnimation] class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
         <div
           *ngFor="let stat of stats; trackBy: trackByStatLabel"
-          class="text-center stat-card"
+          class="stat-card"
         >
           <app-card
-            className="glass-effect p-6 border-0 hover:neon-border transition-all duration-300"
+            className="glass-effect border-0 p-6 text-center hover:neon-border transition-all duration-200"
           >
             <lucide-icon
               [img]="stat.icon"
               [class]="'w-8 h-8 mx-auto mb-3 ' + stat.color"
             ></lucide-icon>
-            <div class="text-3xl font-black gradient-text mb-2">
+            <div class="text-2xl font-black gradient-text mb-1">
               {{ stat.value }}
             </div>
             <div class="text-sm text-foreground/70">{{ stat.label }}</div>
@@ -52,7 +52,7 @@
         <!-- Text Content -->
         <div [@itemAnimation] class="space-y-8">
           <div class="space-y-6">
-            <h3 class="text-2xl md:text-3xl font-bold">
+            <h3 class="text-2xl md:text-3xl text-foreground font-bold">
               Crafting Digital Excellence with
               <span class="gradient-text">Cutting-Edge Technology</span>
             </h3>
@@ -95,10 +95,11 @@
             >
               <app-badge
                 variant="secondary"
-                className="py-2 glass-effect text-primary border border-primary/20 hover:bg-primary/10 transition-all duration-300"
+                className="py-2 glass-effect text-primary border-primary/20 hover:bg-primary/10 transition-all duration-300"
               >
-              {{ skill }}
+                <!-- You can put text and icons here -->
                 <lucide-icon [img]="Zap" class="w-4 h-4 mr-2"></lucide-icon>
+                {{ skill }}
               </app-badge>
             </div>
           </div>
@@ -106,7 +107,7 @@
 
         <!-- Technologies Grid -->
         <div [@itemAnimation] class="space-y-6">
-          <h4 class="text-xl font-semibold text-center mb-8">
+          <h4 class="text-xl text-foreground font-semibold text-center mb-8">
             Core Technologies
           </h4>
 
@@ -122,7 +123,7 @@
               (mouseleave)="onTechLeave()"
             >
               <app-card
-                className="glass-effect p-4 border-0 hover:neon-border transition-all duration-300 relative overflow-hidden"
+                className="glass-effect p-4 border-0 transition-all duration-300 relative overflow-hidden"
               >
                 <!-- Progress Background -->
                 <div
