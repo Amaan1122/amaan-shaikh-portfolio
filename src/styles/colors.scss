@@ -135,6 +135,19 @@
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
+.bg-gradient-to-t {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6),
+    transparent,
+    transparent
+  );
+}
+.from-black-400 {
+  --tw-gradient-from: #555555;
+  --tw-gradient-to: rgba(96, 165, 250, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .from-blue-400 {
   --tw-gradient-from: #60a5fa;
   --tw-gradient-to: rgba(96, 165, 250, 0);
@@ -206,6 +219,9 @@
 }
 .to-orange-600 {
   --tw-gradient-to: #ea580c;
+}
+.to-white {
+  --tw-gradient-to: #fff;
 }
 
 // Border Colors

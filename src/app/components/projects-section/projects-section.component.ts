@@ -52,6 +52,7 @@ interface Project {
     year: string;
   };
   category: string;
+  url: string;
 }
 
 @Component({
@@ -143,8 +144,7 @@ export class ProjectsSectionComponent implements OnInit, OnDestroy {
       title: 'TalentMatch AI',
       description:
         'Revolutionary AI-powered recruitment platform that transforms how companies discover and connect with top talent. Features advanced machine learning algorithms for intelligent candidate matching, automated resume analysis, and predictive hiring analytics.',
-      image:
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
+      image: 'assets/projects/TalentMatchAi.png',
       technologies: [
         'Angular',
         'TypeScript',
@@ -154,63 +154,31 @@ export class ProjectsSectionComponent implements OnInit, OnDestroy {
         'SQL Server',
         'Docker',
       ],
-      featured: true,
-      stats: { stars: 128, users: '2.5k', year: '2024' },
+      featured: false,
+      stats: { stars: 128, users: '2.5k', year: '2025' },
       category: 'AI/ML',
+      url: '',
     },
     {
-      title: 'CyberShield Dashboard',
+      title: 'SHHHTOSHI - TON-Based Staking & Rewards dApp',
       description:
-        'Next-generation cybersecurity monitoring platform with real-time threat detection, advanced analytics, and automated response systems. Built for enterprise-level security operations.',
-      image:
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
+        'SHHHTOSHI is a decentralized staking and rewards platform built on the TON blockchain. The project features a web-based and Telegram Mini App interface, allowing users to stake tokens, earn rewards, complete tasks, and refer others to earn points.',
+      image: 'assets/projects/ShhhToshi.png',
       technologies: [
+        '.NET Core',
         'Angular',
         'RxJS',
-        '.NET 8',
         'SignalR',
-        'Redis',
-        'PostgreSQL',
+        'Entity Framework Core',
+        'SQL Server',
+        'REST API Design',
+        'Telegram Integration',
+        'Blockchain',
       ],
       featured: false,
-      stats: { stars: 89, users: '850', year: '2024' },
-      category: 'Security',
-    },
-    {
-      title: 'HealthTech Portal',
-      description:
-        'Comprehensive healthcare management ecosystem with telemedicine capabilities, patient records management, appointment scheduling, and AI-assisted diagnosis support.',
-      image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop',
-      technologies: [
-        'Angular',
-        'TypeScript',
-        '.NET Core',
-        'Azure',
-        'FHIR',
-        'WebRTC',
-      ],
-      featured: false,
-      stats: { stars: 156, users: '1.2k', year: '2023' },
-      category: 'Healthcare',
-    },
-    {
-      title: 'FinanceFlow Analytics',
-      description:
-        'Advanced financial analytics platform with real-time market data, portfolio optimization, risk assessment algorithms, and intelligent trading recommendations.',
-      image:
-        'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop',
-      technologies: [
-        'Angular',
-        '.NET',
-        'ML.NET',
-        'Azure Functions',
-        'CosmosDB',
-        'Power BI',
-      ],
-      featured: false,
-      stats: { stars: 203, users: '3.1k', year: '2023' },
-      category: 'FinTech',
+      stats: { stars: 89, users: '1k', year: '2025' },
+      category: 'Blockchain',
+      url: 'https://shhh-toshi-app-frontend.vercel.app/',
     },
   ];
 
@@ -264,7 +232,7 @@ export class ProjectsSectionComponent implements OnInit, OnDestroy {
   getCategoryColor(category: string): string {
     const colors: Record<string, string> = {
       'AI/ML': 'from-purple-500 to-pink-500',
-      Security: 'from-red-500 to-orange-500',
+      Blockchain: 'from-red-500 to-orange-500',
       Healthcare: 'from-green-500 to-teal-500',
       FinTech: 'from-blue-500 to-cyan-500',
     };
