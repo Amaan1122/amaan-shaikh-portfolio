@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
   animate,
   state,
@@ -74,11 +75,11 @@ interface Stat {
         animate('450ms cubic-bezier(.7,0,.3,1)'),
       ]),
     ]),
-    // ... more, as needed for hover
   ],
 })
 export class TestimonialsSectionComponent {
   hoveredCard: number | null = null;
+  private observer?: IntersectionObserver;
 
   // Expose icons for template
   readonly Star = Star;
@@ -88,7 +89,6 @@ export class TestimonialsSectionComponent {
   readonly MessageCircle = MessageCircle;
 
   testimonials: Testimonial[] = [
-    // ...same as in your original React code
     {
       name: 'Sarah Johnson',
       role: 'CTO',
@@ -161,14 +161,32 @@ export class TestimonialsSectionComponent {
 
   @ViewChild('observeRef', { static: true }) observeRef!: ElementRef;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngAfterViewInit() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        this.inView = entries[0].isIntersecting;
-      },
-      { rootMargin: '-100px', threshold: 0.1 }
-    );
-    observer.observe(this.observeRef.nativeElement);
+    // Only initialize IntersectionObserver in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeIntersectionObserver();
+    }
+  }
+
+  private initializeIntersectionObserver() {
+    if ('IntersectionObserver' in window && this.observeRef?.nativeElement) {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          this.inView = entries[0].isIntersecting;
+        },
+        { rootMargin: '-100px', threshold: 0.1 }
+      );
+      this.observer.observe(this.observeRef.nativeElement);
+    }
+  }
+
+  ngOnDestroy() {
+    // Clean up the observer when component is destroyed
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   onCardMouseEnter(idx: number) {
