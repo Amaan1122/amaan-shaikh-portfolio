@@ -76,8 +76,17 @@
               size="lg"
               class="transition-all duration-300 transform hover:-translate-y-1"
             >
-              <lucide-icon [img]="Download" class="w-4 h-4 mr-1"></lucide-icon>
-              Resume
+              <a
+                href="https://1drv.ms/b/c/e7eb77467bcb119a/ERRa7D5Xz_1Js_rXl37bgZcBi4AXJPCbMkNR8FzO0kiZ_w?e=S1Awn7"
+                target="_blank"
+                class="no-underline inline-flex gap-2 text-white font-semibold"
+              >
+                <lucide-icon
+                  [img]="Download"
+                  class="w-4 h-4 mr-1"
+                ></lucide-icon>
+                Resume
+              </a>
             </app-button>
           </div>
 
@@ -85,6 +94,7 @@
             <a
               *ngFor="let social of socialLinks; trackBy: trackBySocialIndex"
               [href]="social.href"
+              target="_blank"
               [class]="
                 'p-3 glass-effect rounded-xl text-foreground/60 transition-all duration-300 hover:scale-110 social-link ' +
                 social.color

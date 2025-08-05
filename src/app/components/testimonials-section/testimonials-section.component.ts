@@ -97,20 +97,20 @@ export class TestimonialsSectionComponent {
         'Amaan delivered exceptional work on our enterprise web application. His expertise in Angular and .NET helped us achieve our goals ahead of schedule. Highly professional and communicative throughout the project.',
       rating: 5,
       avatar:
-        'https://images.unsplash.com/photo-1494790108755-2616c96c1c88?w=150&h=150&fit=crop&crop=face',
+        '',
       projectType: 'Enterprise Web App',
       duration: '3 months',
       highlight: 'Delivered 2 weeks early',
     },
     {
       name: 'Michael Chen',
-      role: 'Product Manager',
+      role: 'PM',
       company: 'InnovateLabs',
       content:
         'Working with Amaan was a game-changer for our project. His AI integration skills and full-stack expertise helped us build a sophisticated platform that exceeded our expectations. Would definitely work with him again.',
       rating: 5,
       avatar:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+        '',
       projectType: 'AI Integration Platform',
       duration: '4 months',
       highlight: 'Exceeded expectations',
@@ -123,7 +123,7 @@ export class TestimonialsSectionComponent {
         "Amaan's attention to detail and technical proficiency in building our healthcare management system was outstanding. He understood our requirements perfectly and delivered a robust, scalable solution.",
       rating: 5,
       avatar:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+        '',
       projectType: 'Healthcare Management',
       duration: '5 months',
       highlight: 'Scalable solution',
@@ -133,25 +133,25 @@ export class TestimonialsSectionComponent {
   stats: Stat[] = [
     {
       label: 'Happy Clients',
-      value: '50+',
+      value: '10+',
       icon: Users,
       color: 'text-blue-400',
     },
     {
       label: 'Projects Completed',
-      value: '75+',
+      value: '15+',
       icon: Award,
       color: 'text-green-400',
     },
     {
       label: 'Average Rating',
-      value: '4.9/5',
+      value: '4.8/5',
       icon: Star,
       color: 'text-yellow-400',
     },
     {
       label: 'Client Retention',
-      value: '95%',
+      value: '85%',
       icon: MessageCircle,
       color: 'text-purple-400',
     },

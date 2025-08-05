@@ -119,9 +119,21 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   readonly ArrowDown = ArrowDown;
 
   socialLinks: SocialLink[] = [
-    { icon: Github, href: '#', color: 'hover:text-gray-300' },
-    { icon: Linkedin, href: '#', color: 'hover:text-blue-400' },
-    { icon: Mail, href: '#', color: 'hover:text-green-400' },
+    {
+      icon: Github,
+      href: 'https://github.com/Amaan1122',
+      color: 'hover:text-gray-300',
+    },
+    {
+      icon: Linkedin,
+      href: 'https://www.linkedin.com/in/amaanshaikh002/',
+      color: 'hover:text-blue-400',
+    },
+    {
+      icon: Mail,
+      href: 'https://www.gmail.com/',
+      color: 'hover:text-green-400',
+    },
   ];
 
   floatingIcons: FloatingIcon[] = [
@@ -131,7 +143,7 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
     { icon: '🔥', position: 'bottom-0 right-0', delay: 3 },
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private readonly platformId: Object) {
     this.generateParticles();
   }
 
@@ -161,7 +173,7 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
     }
   }
 
-  private handleMouseMove = (e: MouseEvent): void => {
+  private readonly handleMouseMove = (e: MouseEvent): void => {
     this.mousePosition.set({ x: e.clientX, y: e.clientY });
   };
 
