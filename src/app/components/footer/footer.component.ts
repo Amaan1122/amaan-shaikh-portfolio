@@ -30,17 +30,17 @@ export class FooterComponent {
   socialLinks: SocialLink[] = [
     {
       icon: Linkedin,
-      href: 'https://linkedin.com/in/amaan-shaikh',
+      href: 'https://linkedin.com/in/amaanshaikh002',
       color: 'hover:text-primary',
     },
     {
       icon: Github,
-      href: 'https://github.com/amaan-shaikh',
+      href: 'https://github.com/Amaan1122',
       color: 'hover:text-primary',
     },
     {
       icon: Mail,
-      href: 'mailto:amaan.shaikh@email.com',
+      href: 'mailto:amaanshaikh898.as@gmail.com',
       color: 'hover:text-primary',
     },
   ];

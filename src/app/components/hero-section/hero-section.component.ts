@@ -131,7 +131,7 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
     },
     {
       icon: Mail,
-      href: 'https://www.gmail.com/',
+      href: 'mailto:amaanshaikh898.as@gmail.com',
       color: 'hover:text-green-400',
     },
   ];
