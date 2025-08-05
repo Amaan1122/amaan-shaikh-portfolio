@@ -148,10 +148,10 @@ export class SkillsSectionComponent implements OnInit, OnDestroy {
       color: 'from-blue-500 to-cyan-500',
       bgGlow: 'bg-blue-500/10',
       skills: [
-        { name: 'Angular', level: 95, color: 'bg-red-500' },
-        { name: 'TypeScript', level: 90, color: 'bg-blue-500' },
-        { name: 'RxJS', level: 85, color: 'bg-purple-500' },
-        { name: 'HTML/CSS', level: 92, color: 'bg-orange-500' },
+        { name: 'Angular', level: 80, color: 'bg-red-500' },
+        { name: 'TypeScript', level: 80, color: 'bg-blue-500' },
+        { name: 'RxJS', level: 75, color: 'bg-purple-500' },
+        { name: 'HTML/CSS', level: 85, color: 'bg-orange-500' },
       ],
     },
     {
@@ -160,10 +160,10 @@ export class SkillsSectionComponent implements OnInit, OnDestroy {
       color: 'from-green-500 to-emerald-500',
       bgGlow: 'bg-green-500/10',
       skills: [
-        { name: 'C# / .NET Core', level: 93, color: 'bg-blue-600' },
-        { name: 'REST APIs', level: 88, color: 'bg-green-500' },
-        { name: 'Entity Framework', level: 85, color: 'bg-purple-600' },
-        { name: 'Microservices', level: 80, color: 'bg-indigo-500' },
+        { name: 'C# / .NET Core', level: 70, color: 'bg-blue-600' },
+        { name: 'REST APIs', level: 70, color: 'bg-green-500' },
+        { name: 'Entity Framework', level: 70, color: 'bg-purple-600' },
+        { name: 'Microservices', level: 65, color: 'bg-indigo-500' },
       ],
     },
     {
@@ -172,10 +172,10 @@ export class SkillsSectionComponent implements OnInit, OnDestroy {
       color: 'from-purple-500 to-pink-500',
       bgGlow: 'bg-purple-500/10',
       skills: [
-        { name: 'SQL Server', level: 90, color: 'bg-red-600' },
-        { name: 'Azure', level: 82, color: 'bg-blue-400' },
-        { name: 'Git / GitHub', level: 95, color: 'bg-gray-600' },
-        { name: 'Docker', level: 75, color: 'bg-blue-500' },
+        { name: 'SQL Server', level: 75, color: 'bg-red-600' },
+        { name: 'Azure', level: 60, color: 'bg-blue-400' },
+        { name: 'Git / GitHub', level: 80, color: 'bg-gray-600' },
+        { name: 'Docker', level: 55, color: 'bg-blue-500' },
       ],
     },
     {
@@ -184,10 +184,8 @@ export class SkillsSectionComponent implements OnInit, OnDestroy {
       color: 'from-orange-500 to-red-500',
       bgGlow: 'bg-orange-500/10',
       skills: [
-        { name: 'AI Integration', level: 78, color: 'bg-purple-500' },
-        { name: 'Machine Learning', level: 70, color: 'bg-green-500' },
-        { name: 'Data Analysis', level: 85, color: 'bg-blue-500' },
-        { name: 'Power BI', level: 80, color: 'bg-yellow-500' },
+        { name: 'AI Integration', level: 70, color: 'bg-purple-500' },
+        { name: 'Open AI', level: 75, color: 'bg-blue-500' },
       ],
     },
   ];
@@ -201,13 +199,13 @@ export class SkillsSectionComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Technologies',
-      value: '15+',
+      value: '10+',
       icon: Code2,
       color: 'text-blue-400',
     },
     {
       label: 'Frameworks',
-      value: '8+',
+      value: '5+',
       icon: Database,
       color: 'text-green-400',
     },
